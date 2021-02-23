@@ -36,6 +36,15 @@ public class PlayerController : MonoBehaviour
         {
             anima.SetFloat("Blend", 0f);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
+
+    }
+    void Attack()
+    {
+        anima.SetTrigger("Attack");
     }
 }
 
