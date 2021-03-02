@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Transform tanganKanan;
+    [SerializeField]
+    private Transform wieldKetupat;
+
+
     public CharacterController controller;
     public Animator anima;
+    public GameObject ketupat;
     public float speed = 6f;
     public float RotationSpeed = 15f;
 
@@ -44,7 +51,26 @@ public class PlayerController : MonoBehaviour
     }
     void Attack()
     {
+        ketupat.transform.parent = tanganKanan;
+        ketupat.transform.position = tanganKanan.position;
         anima.SetTrigger("Attack");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Collectible")
+        {
+            Destroy(other.gameObject);
+            ketupat.transform.localScale += new Vector3(0.01f, 0.05f, 0.05f);
+        }
+    }
+    
+    IEnumerator EndAttack()
+    {
+        yield return new WaitForSeconds(2);
+        ketupat.transform.parent = wieldKetupat;
+        ketupat.transform.position = wieldKetupat.position;
+        ketupat.transform.rotation = wieldKetupat.rotation;
     }
 }
 
