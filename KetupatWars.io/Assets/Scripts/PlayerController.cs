@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public GameObject ketupat;
     public float speed = 6f;
     public float RotationSpeed = 15f;
+    public int jumlahBeras;
 
     float mDesiredRotation = 0f;
 
@@ -61,7 +62,8 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Collectible")
         {
             Destroy(other.gameObject);
-            ketupat.transform.localScale += new Vector3(0.01f, 0.05f, 0.05f);
+            ketupat.transform.localScale += new Vector3(0.005f, 0.025f, 0.025f);
+            jumlahBeras++;
         }
     }
     
