@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform wieldKetupat;
 
-
     public CharacterController controller;
     public Animator anima;
     public GameObject ketupat;
@@ -18,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public int jumlahBeras;
 
     float mDesiredRotation = 0f;
+
+    private bool isSprint = false;
 
     void Update()
     {
@@ -33,20 +34,28 @@ public class PlayerController : MonoBehaviour
         Quaternion currentRotation = transform.rotation;
         Quaternion targetRotation  = Quaternion.Euler(0, mDesiredRotation, 0);
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, RotationSpeed * Time.deltaTime);
-
-
-       if (direction.magnitude >= 0.1f)
-        {
-            controller.Move(direction * speed * Time.deltaTime);
-            anima.SetFloat("Blend", 0.5f);
-        }
-       else
-        {
-            anima.SetFloat("Blend", 0f);
-        }
+              
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isSprint)
+        {
+            Run();
+        }
+        if (direction.magnitude >= 0.1f)
+        {
+            controller.Move(direction * speed * Time.deltaTime);
+            if (isSprint == true)
+            {
+                anima.SetFloat("Blend", 1f);
+                return;
+            }
+            anima.SetFloat("Blend", 0.5f);
+        }
+        else
+        {
+            anima.SetFloat("Blend", 0f);
         }
 
     }
@@ -55,6 +64,10 @@ public class PlayerController : MonoBehaviour
         ketupat.transform.parent = tanganKanan;
         ketupat.transform.position = tanganKanan.position;
         anima.SetTrigger("Attack");
+    }
+    void Run()
+    {
+        StartCoroutine(EndRun());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,6 +86,15 @@ public class PlayerController : MonoBehaviour
         ketupat.transform.parent = wieldKetupat;
         ketupat.transform.position = wieldKetupat.position;
         ketupat.transform.rotation = wieldKetupat.rotation;
+    }
+
+    IEnumerator EndRun()
+    {
+        isSprint = true;
+        speed += 5f;
+        yield return new WaitForSeconds(5);
+        speed -= 5f;
+        isSprint = false;
     }
 }
 
