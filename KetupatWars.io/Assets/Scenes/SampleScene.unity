@@ -1672,7 +1672,7 @@ MonoBehaviour:
   controller: {fileID: 1071645037}
   anima: {fileID: 739592587}
   ketupat: {fileID: 2079563365}
-  speed: 10
+  speed: 5
   RotationSpeed: 15
   jumlahBeras: 0
 --- !u!143 &1071645037
