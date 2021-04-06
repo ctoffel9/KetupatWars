@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class KetupatScript : MonoBehaviour
 {
-
+ 
     // Start is called before the first frame update
     void Start()
     {
         
+       
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Beras")
+        if (other.GetComponent<PlayerScript>())
         {
-            
+            if (other.GetComponent<PlayerScript>().isControlled == false)
+            {
+                other.GetComponent<PlayerScript>().Death();
+            }
+
         }
     }
 }

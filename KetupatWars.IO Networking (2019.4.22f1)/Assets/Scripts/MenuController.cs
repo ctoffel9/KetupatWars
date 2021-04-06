@@ -7,6 +7,8 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private string VersName = "0,1";
     [SerializeField] private GameObject UsernameMenu;
+    [SerializeField] private GameObject RoomPanel;
+    [SerializeField] private GameObject SettingPanel;
     [SerializeField] private GameObject ConnectPanel;
 
     [SerializeField] private InputField UsernameInput;
@@ -14,6 +16,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private InputField JoinGameInput;
 
     [SerializeField] private GameObject StartButton;
+    [SerializeField] private GameObject MenuButtons;
     private void Awake()
     {
         PhotonNetwork.ConnectUsingSettings(VersName);
@@ -64,5 +67,42 @@ public class MenuController : MonoBehaviour
     private void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Gameplay");
+    }
+
+    public void CreateJoinSelection()
+    {
+        RoomPanel.SetActive(true);
+    }
+
+    public void CreateJoinClose()
+    {
+        RoomPanel.SetActive(false);
+    }
+
+    public void SettingMenuOpen()
+    {
+        SettingPanel.SetActive(true);
+    }
+
+    public void SettingMenuClose()
+    {
+        SettingPanel.SetActive(false);
+    }
+    
+    public void MainMenuOpen()
+    {
+        MenuButtons.SetActive(true);
+    }
+
+    public void Exit()
+    {
+        if (UnityEditor.EditorApplication.isPlaying == true)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 }

@@ -30,6 +30,7 @@ public class PlayerNetworking : Photon.MonoBehaviour
             controllerScript.PlayerLighting.transform.SetParent(null);
 
             controllerScript.PlayerNameText.text = PhotonNetwork.playerName;
+           
             controllerScript.isControlled = true;
 
             isPemainSendiri = true;
@@ -42,6 +43,7 @@ public class PlayerNetworking : Photon.MonoBehaviour
 
             controllerScript.isControlled = false;
 
+            
             controllerScript.PlayerNameText.text = photonView.owner.name;
             controllerScript.PlayerNameText.color = Color.red;
 
@@ -55,14 +57,14 @@ public class PlayerNetworking : Photon.MonoBehaviour
         if (stream.isWriting)
         {
             //We own this player: send the others our data
-            //stream.SendNext((int)controllerScript._characterState);
+            stream.SendNext((int)controllerScript._characterState);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
         }
         else
         {
             //Network player, receive data
-            //controllerScript._characterState = (CharacterState)(int)stream.ReceiveNext();
+            controllerScript._characterState = (CharacterAnim)(int)stream.ReceiveNext();
             correctPlayerPos = (Vector3)stream.ReceiveNext();
             correctPlayerRot = (Quaternion)stream.ReceiveNext();
 
