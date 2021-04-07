@@ -72,6 +72,8 @@ public class PlayerScript : Photon.MonoBehaviour
         {
             anima.SetTrigger("Attack");
         }
+
+        RpcScore(berasDimiliki);
     }
 
     private void CheckInput()

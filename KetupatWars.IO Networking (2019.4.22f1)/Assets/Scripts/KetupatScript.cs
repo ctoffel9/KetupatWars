@@ -22,7 +22,7 @@ public class KetupatScript : MonoBehaviour
     {
         if (other.GetComponent<PlayerScript>())
         {
-            if (other.GetComponent<PlayerScript>().isControlled == false)
+            if (other.GetComponent<PlayerScript>().photonView.isMine == false)
             {
                 other.GetComponent<PlayerScript>().Death();
             }
