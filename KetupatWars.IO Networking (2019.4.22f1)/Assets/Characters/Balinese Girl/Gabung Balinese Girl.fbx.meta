@@ -4,6 +4,27 @@ ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
+      74: 5259475447914872051
+    second: Cube|Cube.004Action
+  - first:
+      74: 9117891803251970930
+    second: Cube.002|Cube.004Action
+  - first:
+      74: -5755876124362903034
+    second: Cube.004|Cube.004Action
+  - first:
+      74: -8753955325409962159
+    second: Cube.001|Cube.004Action
+  - first:
+      74: -1348714769672397471
+    second: Cube.020|Cube.004Action
+  - first:
+      74: -7113018011339359096
+    second: Plane.002|Cube.004Action
+  - first:
+      74: -7750967074322268198
+    second: Sphere.001|Cube.004Action
+  - first:
       74: 5296913521568851940
     second: metarig|Cube.004Action
   - first:
