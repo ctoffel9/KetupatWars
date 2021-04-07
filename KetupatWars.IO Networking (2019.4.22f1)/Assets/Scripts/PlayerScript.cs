@@ -19,6 +19,8 @@ public class PlayerScript : Photon.MonoBehaviour
     PhotonView PV;
 
     GameManager ManagerController;
+    public GameObject DC;
+    public GameObject body;
 
     public CharacterController MyController;
     public Animator anima;
@@ -158,6 +160,16 @@ public class PlayerScript : Photon.MonoBehaviour
         Ketupat.SetActive(false);
     }
 
+    IEnumerator DeathSeq()
+    {
+        body.SetActive(false);
+        DC.SetActive(true);
+        yield return new WaitForSeconds(10);
+        PhotonNetwork.Destroy(this.gameObject);
+        Debug.Log("Berhasil");       
+    }
+
+
     public void GiveScore(float _amount)
     {
         berasDimiliki += _amount;
@@ -181,7 +193,10 @@ public class PlayerScript : Photon.MonoBehaviour
     
     public void Death()
     {
-        PhotonNetwork.Destroy(this.gameObject);
+
+        StartCoroutine(DeathSeq());
     }
+
+    
 
 }
