@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class KetupatScript : MonoBehaviour
 {
-    // GameObject DeathCanvas;
+    PhotonView PV;
+    GameObject DeathCanvas;
     // Start is called before the first frame update
     void Start()
     {
-        //DeathCanvas = GameObject.Find("GameManager").GetComponent<GameManager>().DeathCanvas;       
+        DeathCanvas = GameObject.Find("GameManager").GetComponent<GameManager>().DeathCanvas;       
     }
 
     // Update is called once per frame
@@ -24,7 +25,8 @@ public class KetupatScript : MonoBehaviour
         {
             other.GetComponent<PlayerScript>().Death();
             Debug.Log("Player destroyed");
-            //DeathCanvas.SetActive(true);
+            DeathCanvas.SetActive(true);
+            
         }
     }
 }
