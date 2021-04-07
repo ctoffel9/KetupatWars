@@ -25,7 +25,6 @@ public class ItemNetworking : Photon.MonoBehaviour
             if (PhotonNetwork.isMasterClient)
             {
                 PhotonNetwork.Destroy(this.gameObject);
-                Debug.Log("Player destroyed");
             }
         }
     }

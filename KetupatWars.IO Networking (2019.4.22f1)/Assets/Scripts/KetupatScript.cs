@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KetupatScript : MonoBehaviour
 {
- 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +18,13 @@ public class KetupatScript : MonoBehaviour
         
     }
 
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerScript>())
         {
-            if (other.GetComponent<PlayerScript>().photonView.isMine == false)
-            {
-                other.GetComponent<PlayerScript>().Death();
-            }
-
+            other.GetComponent<PlayerScript>().Death();
+            Debug.Log("Player destroyed");
         }
     }
 }

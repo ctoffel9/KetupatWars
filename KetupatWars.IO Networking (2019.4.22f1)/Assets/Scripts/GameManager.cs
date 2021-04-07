@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject GameCanvas;
     public GameObject SceneCamera;
+    public GameObject DeathCanvas;
 
     private void Awake()
     {
@@ -21,5 +22,16 @@ public class GameManager : MonoBehaviour
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(this.transform.position.x * randomValue, -1 , this.transform.position.z * randomValue), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
         SceneCamera.SetActive(false);
+        DeathCanvas.SetActive(false);
+    }
+
+    public void BacktoMenu()
+    {
+        PhotonNetwork.LoadLevel("MainMenu");
+    }
+
+    public void DeathPanelOpen()
+    {
+        DeathCanvas.SetActive(true);
     }
 }

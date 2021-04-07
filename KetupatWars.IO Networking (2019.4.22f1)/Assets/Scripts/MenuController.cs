@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject RoomPanel;
     [SerializeField] private GameObject SettingPanel;
     [SerializeField] private GameObject ConnectPanel;
+    [SerializeField] private GameObject ExitPanel;
 
     [SerializeField] private InputField UsernameInput;
     [SerializeField] private InputField CreateGameInput;
@@ -94,15 +95,17 @@ public class MenuController : MonoBehaviour
         MenuButtons.SetActive(true);
     }
 
+    public void ExitMenuOpen()
+    {
+        ExitPanel.SetActive(true);
+    }   
+
+    public void ExitMenuClose()
+    {
+        ExitPanel.SetActive(false);
+    }
     public void Exit()
     {
-    /*    if (UnityEditor.EditorApplication.isPlaying == true)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
-        else
-        {
-            Application.Quit();
-        }*/
+        Application.Quit();
     }
 }

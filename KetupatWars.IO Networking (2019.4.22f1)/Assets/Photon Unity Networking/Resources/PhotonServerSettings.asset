@@ -45,4 +45,7 @@ MonoBehaviour:
   - TaggedPlayer
   - RpcScore
   - RpcDeath
+  - KetupatSummon
+  - RpcKetupat
+  - Death
   DisableAutoOpenWizard: 1

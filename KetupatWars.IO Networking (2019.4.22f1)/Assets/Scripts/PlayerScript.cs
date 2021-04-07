@@ -18,11 +18,13 @@ public class PlayerScript : Photon.MonoBehaviour
 
     PhotonView PV;
 
+    GameManager ManagerController;
+
     public CharacterController MyController;
     public Animator anima;
     public GameObject PlayerCamera;
     public GameObject PlayerLighting;
-    public GameObject Ketupat1, Ketupat2;
+    public GameObject Ketupat;
 
     public Text PlayerNameText;
     public Text JumlahBerasText;
@@ -53,6 +55,7 @@ public class PlayerScript : Photon.MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+               
                 _characterState = CharacterAnim.Attack;
             }
         }
@@ -148,6 +151,12 @@ public class PlayerScript : Photon.MonoBehaviour
         speed -= 5f;
         isSprint = false;
     }
+    IEnumerator KetupatSummon()
+    {
+        Ketupat.SetActive(true);
+        yield return new WaitForSeconds(3);
+        Ketupat.SetActive(false);
+    }
 
     public void GiveScore(float _amount)
     {
@@ -164,9 +173,17 @@ public class PlayerScript : Photon.MonoBehaviour
         JumlahBerasText.text = "Jumlah Beras : " + berasDimiliki.ToString();
     }
 
-  
+    [PunRPC]
+    void RpcKetupat()
+    {
+        StartCoroutine(KetupatSummon());
+    }
+    
     public void Death()
     {
         PhotonNetwork.Destroy(this.gameObject);
+        PlayerCamera.SetActive(false);
+        ManagerController.SceneCamera.SetActive(true);
+        ManagerController.DeathPanelOpen();
     }
 }
