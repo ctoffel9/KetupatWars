@@ -182,8 +182,6 @@ public class PlayerScript : Photon.MonoBehaviour
     public void Death()
     {
         PhotonNetwork.Destroy(this.gameObject);
-        PlayerCamera.SetActive(false);
-        ManagerController.SceneCamera.SetActive(true);
-        ManagerController.DeathPanelOpen();
     }
+
 }

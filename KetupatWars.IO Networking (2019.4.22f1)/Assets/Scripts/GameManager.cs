@@ -21,17 +21,19 @@ public class GameManager : MonoBehaviour
 
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(this.transform.position.x * randomValue, -1 , this.transform.position.z * randomValue), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
-        SceneCamera.SetActive(false);
         DeathCanvas.SetActive(false);
     }
 
-    public void BacktoMenu()
+    public void DeathMenuOpen()
+    {
+        DeathCanvas.SetActive(true);
+    }
+    public void BackToMenu()
     {
         PhotonNetwork.LoadLevel("MainMenu");
     }
-
-    public void DeathPanelOpen()
+    public void Respawn()
     {
-        DeathCanvas.SetActive(true);
+        SpawnPlayer();
     }
 }

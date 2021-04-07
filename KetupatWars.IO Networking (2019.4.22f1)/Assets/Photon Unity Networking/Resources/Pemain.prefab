@@ -616,6 +616,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 1497390886}
   PlayerLighting: {fileID: 6467762463980581576}
   Ketupat: {fileID: 1049756081654713920}
+  DeathCanvas: {fileID: 0}
   PlayerNameText: {fileID: 4150550649413018711}
   JumlahBerasText: {fileID: 396931203668978253}
   speed: 5
