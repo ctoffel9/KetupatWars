@@ -18,11 +18,16 @@ public class PlayerScript : Photon.MonoBehaviour
 
     PhotonView PV;
 
+    GameManager ManagerController;
+    public GameObject DC;
+    public GameObject body;
+
     public CharacterController MyController;
     public Animator anima;
     public GameObject PlayerCamera;
     public GameObject PlayerLighting;
-    public GameObject Ketupat1, Ketupat2;
+    public GameObject Ketupat;
+    public GameObject VictoryPanel;
 
     public Text PlayerNameText;
     public Text JumlahBerasText;
@@ -53,6 +58,7 @@ public class PlayerScript : Photon.MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+               
                 _characterState = CharacterAnim.Attack;
             }
         }
@@ -74,6 +80,7 @@ public class PlayerScript : Photon.MonoBehaviour
         }
 
         RpcScore(berasDimiliki);
+        RpcWin();
     }
 
     private void CheckInput()
@@ -148,6 +155,22 @@ public class PlayerScript : Photon.MonoBehaviour
         speed -= 5f;
         isSprint = false;
     }
+    IEnumerator KetupatSummon()
+    {
+        Ketupat.SetActive(true);
+        yield return new WaitForSeconds(3);
+        Ketupat.SetActive(false);
+    }
+
+    IEnumerator DeathSeq()
+    {
+        body.SetActive(false);
+        DC.SetActive(true);
+        yield return new WaitForSeconds(10);
+        PhotonNetwork.Destroy(this.gameObject);
+        Debug.Log("Berhasil");       
+    }
+
 
     public void GiveScore(float _amount)
     {
@@ -164,9 +187,26 @@ public class PlayerScript : Photon.MonoBehaviour
         JumlahBerasText.text = "Jumlah Beras : " + berasDimiliki.ToString();
     }
 
-  
+    [PunRPC]
+    void RpcKetupat()
+    {
+        StartCoroutine(KetupatSummon());
+    }
+    
     public void Death()
     {
-        PhotonNetwork.Destroy(this.gameObject);
+
+        StartCoroutine(DeathSeq());
     }
+    [PunRPC]
+    public void RpcWin()
+    {
+        if(berasDimiliki == 50)
+        {
+            PhotonNetwork.DestroyAll();
+            VictoryPanel.SetActive(true);
+            
+        }
+    }
+
 }

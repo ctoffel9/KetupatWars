@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Realtime;
 
-public class ScoreboardScript : Photon.MonoBehaviour
+public class ScoreboardScript : Photon.PunBehaviour , IPunObservable
 {
-    [SerializeField]PlayerScript PlayerData;
+    [SerializeField] PlayerScript PlayerData;
 
     public Text PlayerName;
     public Text PlayerScore;
@@ -24,8 +25,8 @@ public class ScoreboardScript : Photon.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetScore();
-        GetName();
+        if (PlayerScore != null)
+            PlayerScore.text = PlayerData.berasDimiliki.ToString();
     }
 
     void GetScore()
@@ -35,6 +36,20 @@ public class ScoreboardScript : Photon.MonoBehaviour
 
     void GetName()
     {
-        
+
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.isWriting)
+        {
+            stream.SendNext(PlayerData.berasDimiliki);
+        }
+        else
+        {
+            PlayerData.berasDimiliki = (float)stream.ReceiveNext();
+        }
+    }
+
+
 }
