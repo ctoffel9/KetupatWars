@@ -48,4 +48,5 @@ MonoBehaviour:
   - KetupatSummon
   - RpcKetupat
   - Death
+  - RpcWin
   DisableAutoOpenWizard: 1

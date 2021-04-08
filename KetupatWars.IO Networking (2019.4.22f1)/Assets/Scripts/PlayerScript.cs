@@ -27,6 +27,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject PlayerCamera;
     public GameObject PlayerLighting;
     public GameObject Ketupat;
+    public GameObject VictoryPanel;
 
     public Text PlayerNameText;
     public Text JumlahBerasText;
@@ -79,6 +80,7 @@ public class PlayerScript : Photon.MonoBehaviour
         }
 
         RpcScore(berasDimiliki);
+        RpcWin();
     }
 
     private void CheckInput()
@@ -196,7 +198,15 @@ public class PlayerScript : Photon.MonoBehaviour
 
         StartCoroutine(DeathSeq());
     }
-
-    
+    [PunRPC]
+    public void RpcWin()
+    {
+        if(berasDimiliki == 50)
+        {
+            PhotonNetwork.DestroyAll();
+            VictoryPanel.SetActive(true);
+            
+        }
+    }
 
 }
