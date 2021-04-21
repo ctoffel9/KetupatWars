@@ -20,36 +20,40 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        float randomValue = Random.Range(0f, 0f);
+        int randomValueZ = Random.Range(19, -40);
+        int randomValueX = Random.Range(35, -40);
 
-        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(this.transform.position.x * randomValue, -1 , this.transform.position.z * randomValue), Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(randomValueX, -1 , randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
     }
 
     public void SpawnPlayer2()
     {
-        float randomValue = Random.Range(0f, 0f);
+        int randomValueZ = Random.Range(19, -40);
+        int randomValueX = Random.Range(35, -40);
 
-        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab2.name, new Vector3(this.transform.position.x * randomValue, -1, this.transform.position.z * randomValue), Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab2.name, new Vector3(randomValueX, -1, randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
     }
 
     public void SpawnPlayer3()
     {
-        float randomValue = Random.Range(0f, 0f);
+        int randomValueZ = Random.Range(19, -40);
+        int randomValueX = Random.Range(35, -40);
 
-        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab3.name, new Vector3(this.transform.position.x * randomValue, -1, this.transform.position.z * randomValue), Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab3.name, new Vector3(randomValueX, -1, randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
     }
 
     public void SpawnPlayer4()
     {
-        float randomValue = Random.Range(0f, 0f);
+        int randomValueZ = Random.Range(19, -40);
+        int randomValueX = Random.Range(35, -40);
 
-        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab4.name, new Vector3(this.transform.position.x * randomValue, -1, this.transform.position.z * randomValue), Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab4.name, new Vector3(randomValueX, -1, randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
         DeathCanvas.SetActive(false);
     }

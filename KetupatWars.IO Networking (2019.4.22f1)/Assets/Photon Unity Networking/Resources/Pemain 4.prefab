@@ -83,7 +83,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497390886}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &1497390887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: -5462187133762548566}
   - component: {fileID: 3160043891171561421}
   m_Layer: 0
-  m_Name: Pemain
+  m_Name: Pemain 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
