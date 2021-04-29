@@ -46,4 +46,5 @@ MonoBehaviour:
   - RpcScore
   - RpcWin
   - TaggedPlayer
+  - Update
   DisableAutoOpenWizard: 1

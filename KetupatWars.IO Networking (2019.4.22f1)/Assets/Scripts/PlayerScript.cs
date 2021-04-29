@@ -26,7 +26,8 @@ public class PlayerScript : Photon.MonoBehaviour
     public Animator anima;
     public GameObject PlayerCamera;
     public GameObject PlayerLighting;
-    public GameObject Ketupat;
+    public GameObject KetupatBack;
+    public GameObject KetupatAttack;
     public GameObject VictoryPanel;
 
     public Text PlayerNameText;
@@ -40,6 +41,7 @@ public class PlayerScript : Photon.MonoBehaviour
 
     public bool isControlled;
     public bool isSprint;
+    public bool isAttacking;
 
     private void Awake()
     {
@@ -56,10 +58,9 @@ public class PlayerScript : Photon.MonoBehaviour
             {
                 Run();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
             {
-               
-                _characterState = CharacterAnim.Attack;
+                StartCoroutine(KetupatSummon());
             }
         }
         if (_characterState == CharacterAnim.Idle)
@@ -127,25 +128,25 @@ public class PlayerScript : Photon.MonoBehaviour
         Destroy(gameObject);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!photonView.isMine)
-    //        return;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!photonView.isMine)
+            return;
 
-    //    PhotonView target = other.gameObject.GetComponent<PhotonView>();
+        PhotonView target = other.gameObject.GetComponent<PhotonView>();
 
-    //    if(target != null && (!target.isMine || target.isSceneView))
-    //    {
-    //        if(target.gameObject.tag == "Beras")
-    //        {
-    //            PhotonNetwork.Destroy(target.gameObject);
-    //            Debug.Log(" Object Destroyed All Client");
-    //            GiveScore(1);
-    //            Ketupat1.transform.localScale += new Vector3(0.005f , 0.025f, 0.025f);
-    //            Ketupat2.transform.localScale += new Vector3(0.005f, 0.025f, 0.025f);
-    //        }
-    //    }  
-    //}
+        if(target != null && (!target.isMine || target.isSceneView))
+       {
+            if(target.gameObject.tag == "Beras")
+            {
+                PhotonNetwork.Destroy(target.gameObject);
+                Debug.Log(" Object Destroyed All Client");
+                GiveScore(1);
+                KetupatAttack.transform.localScale += new Vector3(0.005f , 0.025f, 0.025f);
+                KetupatBack.transform.localScale += new Vector3(0.005f, 0.025f, 0.025f);
+           }
+        }  
+    }
 
     IEnumerator EndRun()
     {
@@ -157,19 +158,25 @@ public class PlayerScript : Photon.MonoBehaviour
     }
     IEnumerator KetupatSummon()
     {
-        Ketupat.SetActive(true);
-        yield return new WaitForSeconds(3);
-        Ketupat.SetActive(false);
+        isAttacking=(true);
+        KetupatAttack.SetActive(true);
+        KetupatBack.SetActive(false);
+        _characterState = CharacterAnim.Attack;
+        yield return new WaitForSeconds(1);
+        KetupatAttack.SetActive(false);
+        KetupatBack.SetActive(true);
+        new WaitForSeconds(2);
+        isAttacking = (false);
     }
 
-    IEnumerator DeathSeq()
+    /*IEnumerator DeathSeq()
     {
         body.SetActive(false);
         DC.SetActive(true);
         yield return new WaitForSeconds(10);
         PhotonNetwork.Destroy(this.gameObject);
         Debug.Log("Berhasil");       
-    }
+    }*/
 
 
     public void GiveScore(float _amount)
@@ -196,7 +203,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public void Death()
     {
 
-        StartCoroutine(DeathSeq());
+        //StartCoroutine(DeathSeq());
     }
     [PunRPC]
     public void RpcWin()
