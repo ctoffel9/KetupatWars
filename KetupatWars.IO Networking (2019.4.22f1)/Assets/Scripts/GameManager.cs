@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-        SpawnPlayer();
+        GameCanvas.SetActive(true);
+        DeathCanvas.SetActive(false);
     }
 }

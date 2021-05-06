@@ -23,12 +23,15 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject body;
 
     public CharacterController MyController;
+    public KetupatScript KetupatScript;
     public Animator anima;
     public GameObject PlayerCamera;
     public GameObject PlayerLighting;
     public GameObject KetupatBack;
     public GameObject KetupatAttack;
     public GameObject VictoryPanel;
+
+    public Material red;
 
     public Text PlayerNameText;
     public Text JumlahBerasText;
@@ -215,5 +218,11 @@ public class PlayerScript : Photon.MonoBehaviour
             
         }
     }
-
+    public void ChangeColor()
+    {
+        if(berasDimiliki >= 5 && berasDimiliki <= 10)
+        {
+            //KetupatBack.GetComponent<MeshRenderer>().materials[1];
+        }
+    }
 }
