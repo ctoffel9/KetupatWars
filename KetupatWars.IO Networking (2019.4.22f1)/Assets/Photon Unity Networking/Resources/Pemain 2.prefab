@@ -479,12 +479,15 @@ MonoBehaviour:
   DC: {fileID: 4482954861891521565}
   body: {fileID: 4609309437468589545}
   MyController: {fileID: 250684218956361837}
+  KetupatScript: {fileID: 0}
   anima: {fileID: 1994615533193349870}
   PlayerCamera: {fileID: 1497390886}
   PlayerLighting: {fileID: 6467762463980581576}
-  Ketupat: {fileID: 0}
+  KetupatBack: {fileID: 0}
+  KetupatAttack: {fileID: 0}
   VictoryPanel: {fileID: 8115695253962151471, guid: ebd56ba98ff2f04498e5788865ef040d,
     type: 3}
+  renderer: []
   PlayerNameText: {fileID: 4150550649413018711}
   JumlahBerasText: {fileID: 396931203668978253}
   speed: 5
@@ -492,6 +495,7 @@ MonoBehaviour:
   berasDimiliki: 0
   isControlled: 0
   isSprint: 0
+  isAttacking: 0
 --- !u!114 &8173251804882455726
 MonoBehaviour:
   m_ObjectHideFlags: 0
