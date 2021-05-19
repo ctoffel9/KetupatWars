@@ -30,9 +30,4 @@ public class KetupatScript : MonoBehaviour
             //DeathCanvas.SetActive(true);
         }
     }
-
-    private void ChangeColor()
-    {
-
-    }
 }

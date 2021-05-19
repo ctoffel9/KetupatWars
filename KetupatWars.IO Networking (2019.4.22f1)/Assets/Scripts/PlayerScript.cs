@@ -31,7 +31,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject KetupatAttack;
     public GameObject VictoryPanel;
 
-    public Material red;
+    public Renderer[] renderer;
 
     public Text PlayerNameText;
     public Text JumlahBerasText;
@@ -85,6 +85,7 @@ public class PlayerScript : Photon.MonoBehaviour
 
         RpcScore(berasDimiliki);
         RpcWin();
+        ChangeColor();
     }
 
     private void CheckInput()
@@ -220,9 +221,20 @@ public class PlayerScript : Photon.MonoBehaviour
     }
     public void ChangeColor()
     {
-        if(berasDimiliki >= 5 && berasDimiliki <= 10)
+        if(berasDimiliki >= 5 && berasDimiliki <= 15)
         {
-            //KetupatBack.GetComponent<MeshRenderer>().materials[1];
+            renderer[0].material.color = Color.red;
+            renderer[1].material.color = Color.red;
+        }
+        if(berasDimiliki >= 15 && berasDimiliki <= 25)
+        {
+            renderer[0].material.color = Color.blue;
+            renderer[1].material.color = Color.blue;
+        }
+        if(berasDimiliki >= 25 && berasDimiliki <= 35)
+        {
+            renderer[0].material.color = Color.black;
+            renderer[1].material.color = Color.black;
         }
     }
 }

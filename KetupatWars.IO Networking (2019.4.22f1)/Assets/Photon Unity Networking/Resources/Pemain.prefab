@@ -644,6 +644,7 @@ MonoBehaviour:
   DC: {fileID: 4482954861891521565}
   body: {fileID: 4521261551855040027}
   MyController: {fileID: 250684218956361837}
+  KetupatScript: {fileID: 0}
   anima: {fileID: 1007172603400361941}
   PlayerCamera: {fileID: 1497390886}
   PlayerLighting: {fileID: 6467762463980581576}
@@ -651,6 +652,9 @@ MonoBehaviour:
   KetupatAttack: {fileID: 1049756081654713920}
   VictoryPanel: {fileID: 8115695253962151471, guid: ebd56ba98ff2f04498e5788865ef040d,
     type: 3}
+  renderer:
+  - {fileID: 5665520581573640436}
+  - {fileID: 7417365298004858840}
   PlayerNameText: {fileID: 4150550649413018711}
   JumlahBerasText: {fileID: 396931203668978253}
   speed: 5
@@ -966,8 +970,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2243ffca87b004c47804efbac3af4e3f, type: 2}
-  - {fileID: 2100000, guid: 028e5309cf8d95545a71ce649ea44402, type: 2}
-  - {fileID: 2100000, guid: ed1e6bf9b28b0c34b8b5f3f78c3fb496, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
