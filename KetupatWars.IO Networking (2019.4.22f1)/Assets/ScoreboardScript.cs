@@ -13,7 +13,7 @@ public class ScoreboardScript : Photon.PunBehaviour , IPunObservable
     // Start is called before the first frame update
     void Awake()
     {
-        PlayerData.GetComponent<PlayerScript>();
+        //PlayerData.GetComponent<PlayerScript>();
     }
 
     public void SetPlayer(PlayerScript _player)

@@ -483,8 +483,9 @@ MonoBehaviour:
   anima: {fileID: 1994615533193349870}
   PlayerCamera: {fileID: 1497390886}
   PlayerLighting: {fileID: 6467762463980581576}
-  KetupatBack: {fileID: 0}
-  KetupatAttack: {fileID: 0}
+  KetupatAttack:
+  - {fileID: 0}
+  - {fileID: 0}
   VictoryPanel: {fileID: 8115695253962151471, guid: ebd56ba98ff2f04498e5788865ef040d,
     type: 3}
   renderer: []

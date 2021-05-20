@@ -9,13 +9,24 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab2;
     public GameObject PlayerPrefab3;
     public GameObject PlayerPrefab4;
+
     public GameObject GameCanvas;
     public GameObject SceneCamera;
     public GameObject DeathCanvas;
 
+    public GameObject Trees1;
+    public GameObject Trees2;
+
+    public int xPos;
+    public int zPos;
+    public int objectToGenerate;
+    public int objectQuantity;
+
+
     private void Awake()
     {
         GameCanvas.SetActive(true);
+        StartCoroutine(GenerateObjects());
     }
 
     public void SpawnPlayer()
@@ -58,6 +69,14 @@ public class GameManager : MonoBehaviour
         DeathCanvas.SetActive(false);
     }
 
+    public void TreesSpawner()
+    {
+        int randomValueX = Random.RandomRange(-240,340);
+        int randomValueZ = Random.RandomRange(-203,295);
+
+
+    }
+
 
     public void DeathMenuOpen()
     {
@@ -71,5 +90,26 @@ public class GameManager : MonoBehaviour
     {
         GameCanvas.SetActive(true);
         DeathCanvas.SetActive(false);
+    }
+
+    IEnumerator GenerateObjects()
+    {
+        while(objectQuantity < 200)
+        {
+            objectToGenerate = Random.RandomRange(1, 2);
+            xPos = Random.Range(-240,340);
+            zPos = Random.Range(-203,295);
+
+            if (objectToGenerate == 1)
+            {
+                Instantiate(Trees1, new Vector3(xPos, 0, zPos), Quaternion.identity);
+            }
+            if (objectToGenerate == 2)
+            {
+                Instantiate(Trees2, new Vector3(xPos, 0, zPos), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(0.1f);
+            objectQuantity += 1;
+        }
     }
 }

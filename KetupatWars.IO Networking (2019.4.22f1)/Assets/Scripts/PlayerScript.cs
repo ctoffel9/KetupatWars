@@ -30,6 +30,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject KetupatBack;
     public GameObject KetupatAttack;
     public GameObject VictoryPanel;
+    public GameObject DataCanvas;
 
     public Renderer[] renderer;
 
@@ -84,7 +85,7 @@ public class PlayerScript : Photon.MonoBehaviour
         }
 
         RpcScore(berasDimiliki);
-        RpcWin();
+        //RpcWin();
         ChangeColor();
     }
 
@@ -145,9 +146,9 @@ public class PlayerScript : Photon.MonoBehaviour
             {
                 PhotonNetwork.Destroy(target.gameObject);
                 Debug.Log(" Object Destroyed All Client");
-                GiveScore(1);
-                KetupatAttack.transform.localScale += new Vector3(0.005f , 0.025f, 0.025f);
-                KetupatBack.transform.localScale += new Vector3(0.005f, 0.025f, 0.025f);
+                GiveScore(0);
+                KetupatAttack.transform.localScale += new Vector3(0.005f , 0.0050f, 0.0050f);
+                KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
            }
         }  
     }
