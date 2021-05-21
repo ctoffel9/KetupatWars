@@ -94,11 +94,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GenerateObjects()
     {
-        while(objectQuantity < 200)
+        while(objectQuantity < 150)
         {
             objectToGenerate = Random.RandomRange(1, 2);
-            xPos = Random.Range(-240,340);
-            zPos = Random.Range(-203,295);
+            xPos = Random.Range(-186,197);
+            zPos = Random.Range(-185,196);
 
             if (objectToGenerate == 1)
             {
