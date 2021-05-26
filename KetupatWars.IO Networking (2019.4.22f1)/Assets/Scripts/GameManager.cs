@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject Bush1;
     public GameObject Bush2;
     public GameObject Bush3;
+    public GameObject Bush4;
+
     public GameObject Beras1;
     public GameObject Beras2;
     public GameObject Beras3;
@@ -27,12 +29,14 @@ public class GameManager : MonoBehaviour
     public int zPos;
     public int objectToGenerate;
     public int objectQuantity;
-
+    public int berasQuantity;
+    public int berasToGenerate;
 
     private void Awake()
     {
         GameCanvas.SetActive(true);
         StartCoroutine(GenerateObjects());
+        StartCoroutine(GenerateBeras());
     }
 
     public void SpawnPlayer()
@@ -100,19 +104,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GenerateObjects()
     {
-        while(objectQuantity < 150)
+        while(objectQuantity < 100)
         {
-            objectToGenerate = Random.Range(1, 8);
-            xPos = Random.Range(-92,97);
-            zPos = Random.Range(-92,98);
+            objectToGenerate = Random.Range(1, 6);
+            xPos = Random.Range(-50,56);
+            zPos = Random.Range(-41,67);
+            
 
             if (objectToGenerate == 1)
             {
-                Instantiate(Trees1, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                Instantiate(Trees1, new Vector3(xPos, 0, zPos), Quaternion.identity);
             }
             if (objectToGenerate == 2)
             {
-                Instantiate(Trees2, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                Instantiate(Trees2, new Vector3(xPos, 0, zPos), Quaternion.identity);
             }
             if (objectToGenerate == 3)
             {
@@ -128,19 +133,35 @@ public class GameManager : MonoBehaviour
             }
             if (objectToGenerate == 6)
             {
+                Instantiate(Bush4, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(0.1f);
+            objectQuantity += 1;
+        }
+    }
+
+    IEnumerator GenerateBeras()
+    {
+        while(berasQuantity < 35)
+        {
+            berasToGenerate = Random.Range(1, 3);
+            xPos = Random.Range(-50, 56);
+            zPos = Random.Range(-41, 67);
+
+           if (berasToGenerate == 1)
+            {
                 Instantiate(Beras1, new Vector3(xPos, 1, zPos), Quaternion.identity);
             }
-            if (objectToGenerate == 7)
+           if (berasToGenerate == 2)
             {
                 Instantiate(Beras2, new Vector3(xPos, 1, zPos), Quaternion.identity);
             }
-            if (objectToGenerate == 8)
+           if (berasToGenerate == 3)
             {
                 Instantiate(Beras3, new Vector3(xPos, 1, zPos), Quaternion.identity);
             }
-
-            yield return new WaitForSeconds(0.01f);
-            objectQuantity += 1;
+            yield return new WaitForSeconds(0.1f);
+            berasQuantity += 1;
         }
     }
 }

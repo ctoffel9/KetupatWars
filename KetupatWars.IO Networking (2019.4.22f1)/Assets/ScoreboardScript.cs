@@ -25,8 +25,8 @@ public class ScoreboardScript : Photon.PunBehaviour , IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (PlayerScore != null)
-            PlayerScore.text = PlayerData.berasDimiliki.ToString();
+        //if (PlayerScore != null)
+            //PlayerScore.text = PlayerData.berasDimiliki.ToString();
     }
 
     void GetScore()
