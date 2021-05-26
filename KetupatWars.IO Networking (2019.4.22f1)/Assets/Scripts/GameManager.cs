@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject Trees1;
     public GameObject Trees2;
+    public GameObject Bush1;
+    public GameObject Bush2;
+    public GameObject Bush3;
+    public GameObject Beras1;
+    public GameObject Beras2;
+    public GameObject Beras3;
 
     public int xPos;
     public int zPos;
@@ -96,19 +102,44 @@ public class GameManager : MonoBehaviour
     {
         while(objectQuantity < 150)
         {
-            objectToGenerate = Random.RandomRange(1, 2);
-            xPos = Random.Range(-90,190);
-            zPos = Random.Range(-90,90);
+            objectToGenerate = Random.Range(1, 8);
+            xPos = Random.Range(-92,97);
+            zPos = Random.Range(-92,98);
 
             if (objectToGenerate == 1)
             {
-                Instantiate(Trees1, new Vector3(xPos, 0, zPos), Quaternion.identity);
+                Instantiate(Trees1, new Vector3(xPos, 1, zPos), Quaternion.identity);
             }
             if (objectToGenerate == 2)
             {
-                Instantiate(Trees2, new Vector3(xPos, 0, zPos), Quaternion.identity);
+                Instantiate(Trees2, new Vector3(xPos, 1, zPos), Quaternion.identity);
             }
-            yield return new WaitForSeconds(0.1f);
+            if (objectToGenerate == 3)
+            {
+                Instantiate(Bush1, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+            if (objectToGenerate == 4)
+            {
+                Instantiate(Bush2, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+            if (objectToGenerate == 5)
+            {
+                Instantiate(Bush3, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+            if (objectToGenerate == 6)
+            {
+                Instantiate(Beras1, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+            if (objectToGenerate == 7)
+            {
+                Instantiate(Beras2, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+            if (objectToGenerate == 8)
+            {
+                Instantiate(Beras3, new Vector3(xPos, 1, zPos), Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(0.01f);
             objectQuantity += 1;
         }
     }
