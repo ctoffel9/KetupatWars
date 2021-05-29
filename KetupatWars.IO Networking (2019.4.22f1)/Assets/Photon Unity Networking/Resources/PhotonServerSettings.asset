@@ -47,4 +47,5 @@ MonoBehaviour:
   - RpcWin
   - TaggedPlayer
   - Update
+  - Spawner
   DisableAutoOpenWizard: 1

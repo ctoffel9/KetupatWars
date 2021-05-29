@@ -2458,6 +2458,7 @@ GameObject:
   - component: {fileID: 732393466}
   - component: {fileID: 732393468}
   - component: {fileID: 732393469}
+  - component: {fileID: 732393470}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2551,6 +2552,33 @@ MonoBehaviour:
   localTimer: 0
   timerIsOn: 0
   timeText: {fileID: 734380812}
+--- !u!114 &732393470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732393465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &734380810
 GameObject:
   m_ObjectHideFlags: 0
@@ -7704,6 +7732,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 312849200}
     m_Modifications:
+    - target: {fileID: -3135743035592172134, guid: 020928da6d7a32a41b03698b2e317cf3,
+        type: 3}
+      propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3135743035592172134, guid: 020928da6d7a32a41b03698b2e317cf3,
+        type: 3}
+      propertyPath: instantiationId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5128729322163637082, guid: 020928da6d7a32a41b03698b2e317cf3,
         type: 3}
       propertyPath: m_Name

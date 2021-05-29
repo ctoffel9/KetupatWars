@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Photon.MonoBehaviour , IPunObservable
 {
     public GameObject PlayerPrefab;
     public GameObject PlayerPrefab2;
@@ -32,11 +32,15 @@ public class GameManager : MonoBehaviour
     public int berasQuantity;
     public int berasToGenerate;
 
+    
     private void Awake()
     {
         GameCanvas.SetActive(true);
-        StartCoroutine(GenerateObjects());
-        StartCoroutine(GenerateBeras());
+        if (PhotonNetwork.isMasterClient)
+        {
+            
+            photonView.RPC("Spawner", PhotonTargets.AllViaServer);
+        }
     }
 
     public void SpawnPlayer()
@@ -113,27 +117,27 @@ public class GameManager : MonoBehaviour
 
             if (objectToGenerate == 1)
             {
-                Instantiate(Trees1, new Vector3(xPos, 0, zPos), Quaternion.identity);
+               PhotonNetwork.Instantiate(Trees1.name, new Vector3(xPos, 0, zPos), Quaternion.identity,0);
             }
             if (objectToGenerate == 2)
             {
-                Instantiate(Trees2, new Vector3(xPos, 0, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Trees2.name, new Vector3(xPos, 0, zPos), Quaternion.identity,0);
             }
             if (objectToGenerate == 3)
             {
-                Instantiate(Bush1, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Bush1.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
             if (objectToGenerate == 4)
             {
-                Instantiate(Bush2, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Bush2.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
             if (objectToGenerate == 5)
             {
-                Instantiate(Bush3, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Bush3.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
             if (objectToGenerate == 6)
             {
-                Instantiate(Bush4, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Bush4.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
             yield return new WaitForSeconds(0.1f);
             objectQuantity += 1;
@@ -150,18 +154,47 @@ public class GameManager : MonoBehaviour
 
            if (berasToGenerate == 1)
             {
-                Instantiate(Beras1, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Beras1.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
            if (berasToGenerate == 2)
             {
-                Instantiate(Beras2, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Beras2.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
            if (berasToGenerate == 3)
             {
-                Instantiate(Beras3, new Vector3(xPos, 1, zPos), Quaternion.identity);
+                PhotonNetwork.Instantiate(Beras3.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
             yield return new WaitForSeconds(0.1f);
             berasQuantity += 1;
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream , PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(this.xPos);
+            stream.SendNext(this.zPos);
+            stream.SendNext(this.berasQuantity);
+            stream.SendNext(this.objectQuantity);
+            stream.SendNext(this.berasToGenerate);
+            stream.SendNext(this.objectToGenerate);
+        } 
+        else
+        {
+            xPos = (int)stream.ReceiveNext();
+            zPos = (int)stream.ReceiveNext();
+            berasQuantity = (int)stream.ReceiveNext();
+            objectQuantity = (int)stream.ReceiveNext();
+            berasToGenerate = (int)stream.ReceiveNext();
+            objectToGenerate = (int)stream.ReceiveNext();
+        }
+
+    }
+    [PunRPC]
+    public void Spawner()
+    {
+        StartCoroutine(GenerateObjects());
+        StartCoroutine(GenerateBeras());
     }
 }
