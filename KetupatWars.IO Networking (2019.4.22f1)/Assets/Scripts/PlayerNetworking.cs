@@ -63,6 +63,8 @@ public class PlayerNetworking : Photon.MonoBehaviour
             stream.SendNext((int)controllerScript._characterState);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(isPemainSendiri);
+            
         }
         else
         {
@@ -70,6 +72,7 @@ public class PlayerNetworking : Photon.MonoBehaviour
             controllerScript._characterState = (CharacterAnim)(int)stream.ReceiveNext();
             correctPlayerPos = (Vector3)stream.ReceiveNext();
             correctPlayerRot = (Quaternion)stream.ReceiveNext();
+            isPemainSendiri = (bool)stream.ReceiveNext();
 
             // avoids lerping the character from "center" to the "current" position when this client joins
             if (firstTake)

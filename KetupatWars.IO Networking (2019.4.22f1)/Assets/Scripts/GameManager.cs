@@ -32,13 +32,13 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public int berasQuantity;
     public int berasToGenerate;
 
+
     
     private void Awake()
     {
         GameCanvas.SetActive(true);
         if (PhotonNetwork.isMasterClient)
         {
-            
             photonView.RPC("Spawner", PhotonTargets.AllViaServer);
         }
     }
@@ -179,6 +179,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
             stream.SendNext(this.objectQuantity);
             stream.SendNext(this.berasToGenerate);
             stream.SendNext(this.objectToGenerate);
+       
         } 
         else
         {
@@ -188,6 +189,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
             objectQuantity = (int)stream.ReceiveNext();
             berasToGenerate = (int)stream.ReceiveNext();
             objectToGenerate = (int)stream.ReceiveNext();
+
         }
 
     }
@@ -197,4 +199,6 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         StartCoroutine(GenerateObjects());
         StartCoroutine(GenerateBeras());
     }
+
+ 
 }

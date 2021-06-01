@@ -65,6 +65,7 @@ public class PlayerScript : Photon.MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
             {
                 StartCoroutine(KetupatSummon());
+                photonView.RPC("RpcKetupat", PhotonTargets.All);
             }
         }
         if (_characterState == CharacterAnim.Idle)
@@ -189,7 +190,7 @@ public class PlayerScript : Photon.MonoBehaviour
         berasDimiliki += _amount;
         JumlahBerasText.text = "Jumlah Beras : " + berasDimiliki.ToString();
 
-        PV.RPC(nameof(RpcScore), PhotonTargets.AllBuffered, berasDimiliki);
+        PV.RPC(nameof(RpcScore), PhotonTargets.AllBufferedViaServer, berasDimiliki);
     }
 
     [PunRPC]

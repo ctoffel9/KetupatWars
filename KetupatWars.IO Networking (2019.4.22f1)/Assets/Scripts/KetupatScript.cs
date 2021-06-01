@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KetupatScript : MonoBehaviour
+public class KetupatScript : Photon.MonoBehaviour , IPunObservable
 {
     PlayerScript controllerScript;
+    PlayerNetworking networkingScript;
 
     // GameObject DeathCanvas;
     // Start is called before the first frame update
@@ -23,11 +24,36 @@ public class KetupatScript : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerScript>())
+
+        if (other.gameObject.GetComponent<PlayerScript>().isControlled == false) 
         {
-            other.GetComponent<PlayerScript>().Death();
+            PhotonNetwork.Destroy(other.gameObject);
             Debug.Log("Player destroyed");
             //DeathCanvas.SetActive(true);
+        } 
+        else if (photonView.isMine && this.gameObject.GetComponent<PlayerScript>().isControlled == true)
+        {
+            PhotonNetwork.Destroy(this.gameObject);
+            Debug.Log("You Are Dead");
         }
+        
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+          
+
+        }
+        else
+        {
+
+        }
+
+    }
+
+    public void RpcDeath()
+    {
+      
     }
 }

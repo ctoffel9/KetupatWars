@@ -22,7 +22,7 @@ public class ItemNetworking : Photon.MonoBehaviour
         if(other.GetComponent<PlayerScript>())
         {
             other.GetComponent<PlayerScript>().GiveScore(1f);
-            if (PhotonNetwork.isMasterClient)
+            if (PhotonNetwork.isMasterClient && PhotonNetwork.isNonMasterClientInRoom)
             {
                 PhotonNetwork.Destroy(this.gameObject);
             }
