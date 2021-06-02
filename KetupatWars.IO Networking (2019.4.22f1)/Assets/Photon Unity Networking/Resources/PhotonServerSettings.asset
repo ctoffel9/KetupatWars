@@ -47,4 +47,8 @@ MonoBehaviour:
   - RpcWin
   - TaggedPlayer
   - Update
+  - Spawner
+  - Timer
+  - TimerStarts
+  - timerOn
   DisableAutoOpenWizard: 1

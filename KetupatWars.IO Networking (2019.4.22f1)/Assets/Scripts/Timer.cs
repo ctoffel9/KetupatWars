@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 
-public class Timer : Photon.MonoBehaviour
+public class Timer : Photon.MonoBehaviour , IPunObservable
 {
     public float timeRemaining = 10;
     public float localTimer;
@@ -16,14 +16,19 @@ public class Timer : Photon.MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerIsOn = true;
+        if (PhotonNetwork.isMasterClient)
+        {
+            photonView.RPC("TimerStarts", PhotonTargets.AllViaServer);
+        }
     }
 
     // Update is called once per frame
-    [PunRPC]
     void Update()
     {
-        RunTimer();
+       if (PhotonNetwork.isMasterClient)
+        {
+            photonView.RPC("timerOn", PhotonTargets.AllViaServer);
+        }
     }
 
     public void RunTimer()
@@ -46,7 +51,7 @@ public class Timer : Photon.MonoBehaviour
         }
     }
 
-    void DisplayTime(float timeToDisplay)
+    public void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
 
@@ -54,5 +59,37 @@ public class Timer : Photon.MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(this.timeText);
+            stream.SendNext(this.timerIsOn);
+            stream.SendNext(this.timeRemaining);
+            stream.SendNext(this.localTimer);
+            
+        }
+        else
+        {
+            timeText = (Text)stream.ReceiveNext();
+            timerIsOn = (bool)stream.ReceiveNext();
+            timeRemaining = (float)stream.ReceiveNext();
+            localTimer = (float)stream.ReceiveNext();
+
+        }
+
+    }
+    [PunRPC]
+    public void TimerStarts()
+    {
+        RunTimer();
+    }
+
+    [PunRPC]
+    public void timerOn()
+    {
+        timerIsOn = true;
     }
 }
