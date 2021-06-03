@@ -536,6 +536,7 @@ MonoBehaviour:
   _characterState: 0
   DC: {fileID: 4482954861891521565}
   body: {fileID: 4521261551855040027}
+  Player: {fileID: 5790799053656665540}
   MyController: {fileID: 250684218956361837}
   KetupatScript: {fileID: 0}
   anima: {fileID: 1007172603400361941}

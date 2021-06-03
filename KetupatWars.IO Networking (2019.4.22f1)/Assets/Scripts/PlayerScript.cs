@@ -21,6 +21,7 @@ public class PlayerScript : Photon.MonoBehaviour
     GameManager ManagerController;
     public GameObject DC;
     public GameObject body;
+    public GameObject Player;
 
     public CharacterController MyController;
     public KetupatScript KetupatScript;
@@ -175,14 +176,14 @@ public class PlayerScript : Photon.MonoBehaviour
         isAttacking = (false);
     }
 
-    /*IEnumerator DeathSeq()
+    IEnumerator DeathSeq()
     {
         body.SetActive(false);
         DC.SetActive(true);
         yield return new WaitForSeconds(10);
         PhotonNetwork.Destroy(this.gameObject);
         Debug.Log("Berhasil");       
-    }*/
+    }
 
 
     public void GiveScore(float _amount)
@@ -205,11 +206,15 @@ public class PlayerScript : Photon.MonoBehaviour
     {
         StartCoroutine(KetupatSummon());
     }
-    
+    [PunRPC]
+    public void RpcDeath()
+    {
+        PhotonNetwork.Destroy(this.gameObject);
+    }
+
     public void Death()
     {
-
-        //StartCoroutine(DeathSeq());
+        photonView.RPC("RpcDeath", PhotonTargets.All);
     }
     [PunRPC]
     public void RpcWin()

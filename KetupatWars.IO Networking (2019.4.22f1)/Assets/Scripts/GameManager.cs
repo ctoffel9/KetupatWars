@@ -106,6 +106,12 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         DeathCanvas.SetActive(false);
     }
 
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel("MainMenu");
+    }
+
     IEnumerator GenerateObjects()
     {
         while(objectQuantity < 100)
