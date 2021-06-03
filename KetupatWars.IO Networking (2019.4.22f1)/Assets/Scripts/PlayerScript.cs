@@ -32,6 +32,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject KetupatAttack;
     public GameObject VictoryPanel;
     public GameObject DataCanvas;
+    public GameObject Beras;
 
     public Renderer[] renderer;
 
@@ -211,7 +212,19 @@ public class PlayerScript : Photon.MonoBehaviour
     {
         PhotonNetwork.Destroy(this.gameObject);
     }
-
+    
+    public void Drop()
+    {
+        photonView.RPC("RpcDrop", PhotonTargets.All);
+    }
+    [PunRPC]
+    public void RpcDrop()
+    {
+        for (int i = 0; i < berasDimiliki; i++)
+        {
+            GameObject beras = PhotonNetwork.Instantiate(Beras.name, transform.position, Quaternion.identity,0);
+        }
+    }
     public void Death()
     {
         photonView.RPC("RpcDeath", PhotonTargets.All);

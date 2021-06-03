@@ -42,7 +42,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         GameCanvas.SetActive(true);
         if (PhotonNetwork.isMasterClient)
         {
-            photonView.RPC("Spawner", PhotonTargets.AllViaServer);
+            photonView.RPC("Spawner", PhotonTargets.All);
         }
     }
 

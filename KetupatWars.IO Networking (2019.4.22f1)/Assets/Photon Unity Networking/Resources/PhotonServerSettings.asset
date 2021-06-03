@@ -53,4 +53,5 @@ MonoBehaviour:
   - timerOn
   - RpcDeath
   - RpcItem
+  - RpcDrop
   DisableAutoOpenWizard: 1
