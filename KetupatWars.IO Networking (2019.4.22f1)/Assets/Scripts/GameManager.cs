@@ -13,6 +13,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public GameObject GameCanvas;
     public GameObject SceneCamera;
     public GameObject DeathCanvas;
+    public GameObject DisconnectCanvas;
 
     public GameObject Trees1;
     public GameObject Trees2;
@@ -32,6 +33,8 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public int berasQuantity;
     public int berasToGenerate;
 
+    public bool Off = false;
+
 
     
     private void Awake()
@@ -39,7 +42,25 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         GameCanvas.SetActive(true);
         if (PhotonNetwork.isMasterClient)
         {
-            photonView.RPC("Spawner", PhotonTargets.AllViaServer);
+            photonView.RPC("Spawner", PhotonTargets.All);
+        }
+    }
+
+    private void Update()
+    {
+        CheckInput();
+    }
+    private void CheckInput()
+    {
+        if(Off && Input.GetKeyDown(KeyCode.Escape))
+        {
+            DisconnectCanvas.SetActive(false);
+            Off = false;
+        }
+        else if (!Off && Input.GetKeyDown(KeyCode.Escape))
+        {
+            DisconnectCanvas.SetActive(true);
+            Off = true;
         }
     }
 
@@ -104,6 +125,12 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     {
         GameCanvas.SetActive(true);
         DeathCanvas.SetActive(false);
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel("MainMenu");
     }
 
     IEnumerator GenerateObjects()

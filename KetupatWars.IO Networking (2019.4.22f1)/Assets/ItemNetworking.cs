@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemNetworking : Photon.MonoBehaviour
 {
-    
+    PlayerScript playerData;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +22,17 @@ public class ItemNetworking : Photon.MonoBehaviour
         if(other.GetComponent<PlayerScript>())
         {
             other.GetComponent<PlayerScript>().GiveScore(1f);
+            other.GetComponent<PlayerScript>().KetupatAttack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
+            other.GetComponent<PlayerScript>().KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
             if (PhotonNetwork.isMasterClient && PhotonNetwork.isNonMasterClientInRoom)
             {
-                PhotonNetwork.Destroy(this.gameObject);
+                photonView.RPC("RpcItem", PhotonTargets.All);
             }
         }
+    }
+    [PunRPC]
+    public void RpcItem()
+    {
+        Destroy(this.gameObject);
     }
 }

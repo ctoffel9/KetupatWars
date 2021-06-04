@@ -21,6 +21,7 @@ public class PlayerScript : Photon.MonoBehaviour
     GameManager ManagerController;
     public GameObject DC;
     public GameObject body;
+    public GameObject Player;
 
     public CharacterController MyController;
     public KetupatScript KetupatScript;
@@ -31,6 +32,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject KetupatAttack;
     public GameObject VictoryPanel;
     public GameObject DataCanvas;
+    public GameObject Beras;
 
     public Renderer[] renderer;
 
@@ -175,14 +177,14 @@ public class PlayerScript : Photon.MonoBehaviour
         isAttacking = (false);
     }
 
-    /*IEnumerator DeathSeq()
+    IEnumerator DeathSeq()
     {
         body.SetActive(false);
         DC.SetActive(true);
         yield return new WaitForSeconds(10);
         PhotonNetwork.Destroy(this.gameObject);
         Debug.Log("Berhasil");       
-    }*/
+    }
 
 
     public void GiveScore(float _amount)
@@ -205,11 +207,27 @@ public class PlayerScript : Photon.MonoBehaviour
     {
         StartCoroutine(KetupatSummon());
     }
+    [PunRPC]
+    public void RpcDeath()
+    {
+        PhotonNetwork.Destroy(this.gameObject);
+    }
     
+    public void Drop()
+    {
+        photonView.RPC("RpcDrop", PhotonTargets.All);
+    }
+    [PunRPC]
+    public void RpcDrop()
+    {
+        for (int i = 0; i < berasDimiliki; i++)
+        {
+            GameObject beras = PhotonNetwork.Instantiate(Beras.name, transform.position, Quaternion.identity,0);
+        }
+    }
     public void Death()
     {
-
-        //StartCoroutine(DeathSeq());
+        photonView.RPC("RpcDeath", PhotonTargets.All);
     }
     [PunRPC]
     public void RpcWin()

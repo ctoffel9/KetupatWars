@@ -721,6 +721,7 @@ MonoBehaviour:
   _characterState: 0
   DC: {fileID: 4482954861891521565}
   body: {fileID: 8322889762880539211}
+  Player: {fileID: 5790799053656665540}
   MyController: {fileID: 250684218956361837}
   KetupatScript: {fileID: 0}
   anima: {fileID: 735232879538205474}
@@ -731,6 +732,7 @@ MonoBehaviour:
   VictoryPanel: {fileID: 8115695253962151471, guid: ebd56ba98ff2f04498e5788865ef040d,
     type: 3}
   DataCanvas: {fileID: 0}
+  Beras: {fileID: 5929265450276046591, guid: e62a0de98441dcf4ca94d1b947706223, type: 3}
   renderer: []
   PlayerNameText: {fileID: 4150550649413018711}
   JumlahBerasText: {fileID: 396931203668978253}

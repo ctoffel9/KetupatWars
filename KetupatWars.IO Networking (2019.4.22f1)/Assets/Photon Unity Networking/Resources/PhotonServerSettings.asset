@@ -45,8 +45,13 @@ MonoBehaviour:
   - RpcKetupat
   - RpcScore
   - RpcWin
-  - Spawner
   - TaggedPlayer
-  - timerOn
+  - Update
+  - Spawner
+  - Timer
   - TimerStarts
+  - timerOn
+  - RpcDeath
+  - RpcItem
+  - RpcDrop
   DisableAutoOpenWizard: 1

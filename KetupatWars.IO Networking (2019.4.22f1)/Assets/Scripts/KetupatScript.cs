@@ -27,13 +27,14 @@ public class KetupatScript : Photon.MonoBehaviour , IPunObservable
 
         if (other.gameObject.GetComponent<PlayerScript>().isControlled == false) 
         {
-            PhotonNetwork.Destroy(other.gameObject);
+            other.gameObject.GetComponent<PlayerScript>().Drop();
+            other.gameObject.GetComponent<PlayerScript>().RpcDeath();
             Debug.Log("Player destroyed");
             //DeathCanvas.SetActive(true);
         } 
-        else if (photonView.isMine && this.gameObject.GetComponent<PlayerScript>().isControlled == true)
+        else if (this.gameObject.GetComponent<PlayerScript>().isControlled == true)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(gameObject);
             Debug.Log("You Are Dead");
         }
         
@@ -54,6 +55,6 @@ public class KetupatScript : Photon.MonoBehaviour , IPunObservable
 
     public void RpcDeath()
     {
-      
+       
     }
 }
