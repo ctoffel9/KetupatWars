@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5929265450276046589}
   - component: {fileID: 5929265450276046590}
   - component: {fileID: 6630867147581121277}
-  - component: {fileID: 6277402943643986645}
+  - component: {fileID: -4532324949121648754}
   m_Layer: 0
   m_Name: Beras
   m_TagString: Beras
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e408fe5cab45c34499bc3b84119b8e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6277402943643986645
+--- !u!114 &-4532324949121648754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

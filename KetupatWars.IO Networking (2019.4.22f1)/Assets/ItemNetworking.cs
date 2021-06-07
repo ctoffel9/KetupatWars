@@ -24,10 +24,8 @@ public class ItemNetworking : Photon.MonoBehaviour
             other.GetComponent<PlayerScript>().GiveScore(1f);
             other.GetComponent<PlayerScript>().KetupatAttack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
             other.GetComponent<PlayerScript>().KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
-            if (PhotonNetwork.isMasterClient && PhotonNetwork.isNonMasterClientInRoom)
-            {
-                photonView.RPC("RpcItem", PhotonTargets.All);
-            }
+            photonView.RPC(nameof(RpcItem), PhotonTargets.All);
+            
         }
     }
     [PunRPC]

@@ -210,12 +210,12 @@ public class PlayerScript : Photon.MonoBehaviour
     [PunRPC]
     public void RpcDeath()
     {
-        PhotonNetwork.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
     
     public void Drop()
     {
-        photonView.RPC("RpcDrop", PhotonTargets.All);
+        photonView.RPC(nameof(RpcDrop), PhotonTargets.All);
     }
     [PunRPC]
     public void RpcDrop()

@@ -32,11 +32,6 @@ public class KetupatScript : Photon.MonoBehaviour , IPunObservable
             Debug.Log("Player destroyed");
             //DeathCanvas.SetActive(true);
         } 
-        else if (this.gameObject.GetComponent<PlayerScript>().isControlled == true)
-        {
-            Destroy(gameObject);
-            Debug.Log("You Are Dead");
-        }
         
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -55,6 +50,6 @@ public class KetupatScript : Photon.MonoBehaviour , IPunObservable
 
     public void RpcDeath()
     {
-       
+      
     }
 }
