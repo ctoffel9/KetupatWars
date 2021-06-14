@@ -28,7 +28,7 @@ public class KetupatScript : Photon.MonoBehaviour , IPunObservable
         if (other.gameObject.GetComponent<PlayerScript>().isControlled == false) 
         {
             other.gameObject.GetComponent<PlayerScript>().Drop();
-            other.gameObject.GetComponent<PlayerScript>().RpcDeath();
+            other.gameObject.GetComponent<PlayerScript>().Death();
             Debug.Log("Player destroyed");
             //DeathCanvas.SetActive(true);
         } 

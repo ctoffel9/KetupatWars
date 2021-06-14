@@ -192,7 +192,7 @@ public class PlayerScript : Photon.MonoBehaviour
         berasDimiliki += _amount;
         JumlahBerasText.text = "Jumlah Beras : " + berasDimiliki.ToString();
 
-        PV.RPC(nameof(RpcScore), PhotonTargets.AllBufferedViaServer, berasDimiliki);
+        PV.RPC(nameof(RpcScore), PhotonTargets.AllBuffered, berasDimiliki);
     }
 
     [PunRPC]
@@ -210,6 +210,7 @@ public class PlayerScript : Photon.MonoBehaviour
     [PunRPC]
     public void RpcDeath()
     {
+        this.gameObject.SetActive(false);
         Destroy(this.gameObject);
     }
     
