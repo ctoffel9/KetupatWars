@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : Photon.MonoBehaviour , IPunObservable
 {
+    PlayerScript PlayerController;
+
     public GameObject PlayerPrefab;
     public GameObject PlayerPrefab2;
     public GameObject PlayerPrefab3;
@@ -14,6 +16,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public GameObject SceneCamera;
     public GameObject DeathCanvas;
     public GameObject DisconnectCanvas;
+    
 
     public GameObject Trees1;
     public GameObject Trees2;
@@ -25,6 +28,10 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public GameObject Beras1;
     public GameObject Beras2;
     public GameObject Beras3;
+
+    private GameObject DCInstance;
+
+    [SerializeField] private Transform Canvas1;
 
     public int xPos;
     public int zPos;
@@ -44,6 +51,14 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         {
             photonView.RPC("Spawner", PhotonTargets.All );
         }
+    }
+
+    public void Start()
+    {
+        PlayerScript player = GetComponent<PlayerScript>();
+        DCInstance = Instantiate(DeathCanvas, Canvas1);
+        player.SetManager(GetComponent<GameManager>());
+
     }
 
     private void Update()
@@ -115,7 +130,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     public void DeathMenuOpen()
     {
-        DeathCanvas.SetActive(true);
+        DCInstance.SetActive(true);
     }
     public void BackToMenu()
     {

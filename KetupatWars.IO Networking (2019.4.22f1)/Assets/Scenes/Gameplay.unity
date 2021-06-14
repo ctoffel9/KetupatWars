@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 102955794}
   - component: {fileID: 102955798}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +449,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
   instantiationId: 5
@@ -2367,7 +2368,8 @@ MonoBehaviour:
     type: 3}
   GameCanvas: {fileID: 2109787637}
   SceneCamera: {fileID: 1594979508}
-  DeathCanvas: {fileID: 1616556514}
+  DeathCanvas: {fileID: 8822091671438853747, guid: 1f9a70ab9753e444d96835ffd01556f1,
+    type: 3}
   DisconnectCanvas: {fileID: 1495803509}
   Trees1: {fileID: 4189660294947537058, guid: 020928da6d7a32a41b03698b2e317cf3, type: 3}
   Trees2: {fileID: 7743663044052525085, guid: 852bbadf32617f1449c8ed9e13a07bca, type: 3}
@@ -2378,6 +2380,7 @@ MonoBehaviour:
   Beras1: {fileID: 6535787347638944626, guid: 6e4c1323c455a3a46b18e2031774fe74, type: 3}
   Beras2: {fileID: 2548888642242667029, guid: 76f7090497c9a574891fbdeca7027475, type: 3}
   Beras3: {fileID: 7182460992272329110, guid: 7f40d096c2b27b0459532b2a0b7fbef6, type: 3}
+  Canvas1: {fileID: 102955797}
   xPos: 0
   zPos: 0
   objectToGenerate: 0
@@ -5756,12 +5759,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 51.44, y: 0, z: 0}
---- !u!1 &1616556514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3292168419479220032, guid: c34f5a63408670c4e8af85040786e192,
-    type: 3}
-  m_PrefabInstance: {fileID: 3292168421085273762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1623081093
 GameObject:
   m_ObjectHideFlags: 0

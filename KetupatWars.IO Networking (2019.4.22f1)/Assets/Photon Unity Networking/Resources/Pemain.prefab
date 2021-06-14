@@ -548,6 +548,7 @@ MonoBehaviour:
     type: 3}
   DataCanvas: {fileID: 2701671437748469218}
   Beras: {fileID: 5929265450276046591, guid: e62a0de98441dcf4ca94d1b947706223, type: 3}
+  DeathPanel: {fileID: 0}
   renderer:
   - {fileID: 5665520581573640436}
   - {fileID: 7417365298004858840}
@@ -1013,27 +1014,27 @@ PrefabInstance:
     - target: {fileID: 1620537888080044248, guid: c34f5a63408670c4e8af85040786e192,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620537888080044248, guid: c34f5a63408670c4e8af85040786e192,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620537888080044248, guid: c34f5a63408670c4e8af85040786e192,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620537888080044248, guid: c34f5a63408670c4e8af85040786e192,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620537888080044248, guid: c34f5a63408670c4e8af85040786e192,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620537888080044248, guid: c34f5a63408670c4e8af85040786e192,
         type: 3}
@@ -1054,6 +1055,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DeathCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292168419479220032, guid: c34f5a63408670c4e8af85040786e192,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34f5a63408670c4e8af85040786e192, type: 3}

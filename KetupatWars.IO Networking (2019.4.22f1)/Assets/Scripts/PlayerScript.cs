@@ -17,8 +17,8 @@ public class PlayerScript : Photon.MonoBehaviour
     public CharacterAnim _characterState;
 
     PhotonView PV;
+    private GameManager ManagerController;
 
-    GameManager ManagerController;
     public GameObject DC;
     public GameObject body;
     public GameObject Player;
@@ -33,6 +33,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject VictoryPanel;
     public GameObject DataCanvas;
     public GameObject Beras;
+    public GameObject DeathPanel;
 
     public Renderer[] renderer;
 
@@ -52,6 +53,11 @@ public class PlayerScript : Photon.MonoBehaviour
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+    }
+
+    void Start()
+    {
+       
     }
 
     private void Update()
@@ -126,6 +132,11 @@ public class PlayerScript : Photon.MonoBehaviour
         }
     }
 
+    public void SetManager (GameManager _gameManager)
+    {
+        ManagerController = _gameManager;
+    }
+
     void Run()
     {
         StartCoroutine(EndRun());
@@ -154,6 +165,7 @@ public class PlayerScript : Photon.MonoBehaviour
                 KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
            }
         }  
+
     }
 
     IEnumerator EndRun()
@@ -210,7 +222,15 @@ public class PlayerScript : Photon.MonoBehaviour
     [PunRPC]
     public void RpcDeath()
     {
+        StartCoroutine(DeathScene());
+        
+    }
+
+    IEnumerator DeathScene()
+    {
         this.gameObject.SetActive(false);
+        ManagerController.DeathMenuOpen();
+        yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
     }
     
