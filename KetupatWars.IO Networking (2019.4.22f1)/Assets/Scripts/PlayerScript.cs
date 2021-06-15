@@ -17,8 +17,10 @@ public class PlayerScript : Photon.MonoBehaviour
     public CharacterAnim _characterState;
 
     PhotonView PV;
-    private GameManager ManagerController;
+    [SerializeField]private DeathScene DeathController;
+    private GameObject DCInstance;
 
+    public GameObject DeathCanvas;
     public GameObject DC;
     public GameObject body;
     public GameObject Player;
@@ -53,11 +55,18 @@ public class PlayerScript : Photon.MonoBehaviour
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+        
     }
 
     void Start()
     {
-       
+        DCInstance = Instantiate(DeathCanvas);
+        DeathScene dead = GameObject.FindGameObjectWithTag("DeadUI").GetComponent<DeathScene>();
+        dead.SetManager(GetComponent<PlayerScript>());
+
+        DeathController = GameObject.FindGameObjectWithTag("DeadUI").GetComponent<DeathScene>();
+
+      
     }
 
     private void Update()
@@ -132,10 +141,7 @@ public class PlayerScript : Photon.MonoBehaviour
         }
     }
 
-    public void SetManager (GameManager _gameManager)
-    {
-        ManagerController = _gameManager;
-    }
+   
 
     void Run()
     {
@@ -166,6 +172,10 @@ public class PlayerScript : Photon.MonoBehaviour
            }
         }  
 
+        if(other.gameObject.tag == "Ketupat")
+        {
+            DeathController.DeathS();
+        }
     }
 
     IEnumerator EndRun()
@@ -229,7 +239,6 @@ public class PlayerScript : Photon.MonoBehaviour
     IEnumerator DeathScene()
     {
         this.gameObject.SetActive(false);
-        ManagerController.DeathMenuOpen();
         yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
     }
@@ -248,6 +257,7 @@ public class PlayerScript : Photon.MonoBehaviour
     }
     public void Death()
     {
+       // DeathController.DeathS();
         photonView.RPC("RpcDeath", PhotonTargets.All);
     }
     [PunRPC]

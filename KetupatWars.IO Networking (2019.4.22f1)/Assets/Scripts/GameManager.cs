@@ -55,9 +55,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     public void Start()
     {
-        PlayerScript player = GetComponent<PlayerScript>();
-        DCInstance = Instantiate(DeathCanvas, Canvas1);
-        player.SetManager(GetComponent<GameManager>());
+        
 
     }
 

@@ -534,6 +534,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterState: 0
+  DeathCanvas: {fileID: 788970450256515529, guid: 39f65bc49de19fb4a97cfba0157e07af,
+    type: 3}
   DC: {fileID: 4482954861891521565}
   body: {fileID: 4521261551855040027}
   Player: {fileID: 5790799053656665540}
