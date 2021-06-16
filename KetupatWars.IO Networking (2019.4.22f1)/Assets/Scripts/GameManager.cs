@@ -271,8 +271,10 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         ht.Remove("Time");
         ht.Add("Time", timer);
         PhotonNetwork.room.SetCustomProperties(ht);
+
         if(timer<=0)
         {
+            
             Debug.Log("waktuhabisbro");
         }
     }

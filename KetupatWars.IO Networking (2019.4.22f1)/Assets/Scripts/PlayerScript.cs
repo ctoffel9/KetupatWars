@@ -199,15 +199,6 @@ public class PlayerScript : Photon.MonoBehaviour
         isAttacking = (false);
     }
 
-    IEnumerator DeathSeq()
-    {
-        body.SetActive(false);
-        DC.SetActive(true);
-        yield return new WaitForSeconds(10);
-        PhotonNetwork.Destroy(this.gameObject);
-        Debug.Log("Berhasil");       
-    }
-
 
     public void GiveScore(float _amount)
     {
