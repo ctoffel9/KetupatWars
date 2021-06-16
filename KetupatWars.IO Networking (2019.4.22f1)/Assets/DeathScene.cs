@@ -5,12 +5,16 @@ using UnityEngine;
 public class DeathScene : MonoBehaviour
 {
     [SerializeField] private GameObject DeadInstance;
-    public PlayerScript playerController;
+    [SerializeField] private PlayerScript playerController;
+    [SerializeField] private GameManager gameController;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gm.SetManager(GetComponent<DeathScene>());
 
+        gameController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,15 @@ public class DeathScene : MonoBehaviour
     {
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel("MainMenu");
+
+    }
+
+    public void Respawn()
+    {
+        
+        gameController.GameCanvas.SetActive(true);
+        DeadInstance.SetActive(false);
+        Debug.Log("testing");
 
     }
 }

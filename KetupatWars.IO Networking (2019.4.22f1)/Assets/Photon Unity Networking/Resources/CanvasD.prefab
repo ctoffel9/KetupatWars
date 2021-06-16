@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeadInstance: {fileID: 8325157393164302033}
   playerController: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!1001 &713463373115551906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,6 +304,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099306247762934051, guid: 1f9a70ab9753e444d96835ffd01556f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099306247762934051, guid: 1f9a70ab9753e444d96835ffd01556f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099306247762934051, guid: 1f9a70ab9753e444d96835ffd01556f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7156554986289274250}
+    - target: {fileID: 9099306247762934051, guid: 1f9a70ab9753e444d96835ffd01556f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099306247762934051, guid: 1f9a70ab9753e444d96835ffd01556f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099306247762934051, guid: 1f9a70ab9753e444d96835ffd01556f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f9a70ab9753e444d96835ffd01556f1, type: 3}

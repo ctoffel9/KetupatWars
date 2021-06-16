@@ -172,7 +172,7 @@ public class PlayerScript : Photon.MonoBehaviour
            }
         }  
 
-        if(other.gameObject.tag == "Ketupat")
+        if(target.gameObject.tag == "Ketupat")
         {
             DeathController.DeathS();
         }
@@ -257,7 +257,6 @@ public class PlayerScript : Photon.MonoBehaviour
     }
     public void Death()
     {
-       // DeathController.DeathS();
         photonView.RPC("RpcDeath", PhotonTargets.All);
     }
     [PunRPC]

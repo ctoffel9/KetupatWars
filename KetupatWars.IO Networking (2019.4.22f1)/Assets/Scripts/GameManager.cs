@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class GameManager : Photon.MonoBehaviour , IPunObservable
 {
-    PlayerScript PlayerController;
+    [SerializeField]PlayerScript PlayerController;
+    [SerializeField]DeathScene DeathController;
 
     public GameObject PlayerPrefab;
     public GameObject PlayerPrefab2;
@@ -40,17 +42,32 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public int berasQuantity;
     public int berasToGenerate;
 
+    public float timeLimit;
+
+    public float timer;
+
+    public Text timerText;
+
     public bool Off = false;
 
 
-    
+
     private void Awake()
     {
         GameCanvas.SetActive(true);
         if (PhotonNetwork.isMasterClient)
         {
             photonView.RPC("Spawner", PhotonTargets.All );
+            timer = timeLimit;
+            
+            Hashtable ht = new Hashtable() { { "Time", timer } };
+            PhotonNetwork.room.SetCustomProperties(ht);
         }
+        else
+        {
+            timer = (float)PhotonNetwork.room.CustomProperties["Time"];
+        }
+
     }
 
     public void Start()
@@ -62,6 +79,8 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     private void Update()
     {
         CheckInput();
+        UpdateTimer();
+        
     }
     private void CheckInput()
     {
@@ -75,6 +94,11 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
             DisconnectCanvas.SetActive(true);
             Off = true;
         }
+    }
+
+    public void SetManager(DeathScene _deathManager)
+    {
+        DeathController = _deathManager;
     }
 
     public void SpawnPlayer()
@@ -137,7 +161,6 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public void Respawn()
     {
         GameCanvas.SetActive(true);
-        DeathCanvas.SetActive(false);
     }
 
     public void LeaveRoom()
@@ -240,5 +263,28 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         StartCoroutine(GenerateBeras());
     }
 
- 
+    public void UpdateTimer()
+    {
+        timer -= Time.deltaTime;
+        DisplayTime(timer);
+        Hashtable ht = PhotonNetwork.room.CustomProperties;
+        ht.Remove("Time");
+        ht.Add("Time", timer);
+        PhotonNetwork.room.SetCustomProperties(ht);
+        if(timer<=0)
+        {
+            Debug.Log("waktuhabisbro");
+        }
+    }
+
+    public void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
 }

@@ -8,6 +8,8 @@ TagManager:
   - Ketupat
   - DC
   - DeadUI
+  - CharSelect
+  - GameManager
   layers:
   - Default
   - TransparentFX
