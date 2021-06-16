@@ -2381,6 +2381,10 @@ MonoBehaviour:
   Beras1: {fileID: 6535787347638944626, guid: 6e4c1323c455a3a46b18e2031774fe74, type: 3}
   Beras2: {fileID: 2548888642242667029, guid: 76f7090497c9a574891fbdeca7027475, type: 3}
   Beras3: {fileID: 7182460992272329110, guid: 7f40d096c2b27b0459532b2a0b7fbef6, type: 3}
+  BerasMerah: {fileID: 3572377815740918328, guid: b39145c363eaf9547a75aff563ae4000,
+    type: 3}
+  BerasKuning: {fileID: 8061601286001156853, guid: 8035c31420e9c5740a18093c5ce10c51,
+    type: 3}
   players: []
   Canvas1: {fileID: 102955797}
   xPos: 0

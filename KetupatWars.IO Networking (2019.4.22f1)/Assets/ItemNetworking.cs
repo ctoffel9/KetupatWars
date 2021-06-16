@@ -16,6 +16,14 @@ public class ItemNetworking : Photon.MonoBehaviour
         {
             skorberas = 1;
         }
+        if(berasmerah)
+        {
+            skorberas = 3;
+        }
+        if(beraskuning)
+        {
+            skorberas = 5;
+        }
     }
 
     // Update is called once per frame

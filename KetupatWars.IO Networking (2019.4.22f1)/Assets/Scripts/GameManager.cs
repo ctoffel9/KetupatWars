@@ -30,6 +30,8 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public GameObject Beras1;
     public GameObject Beras2;
     public GameObject Beras3;
+    public GameObject BerasMerah;
+    public GameObject BerasKuning;
 
     private GameObject DCInstance;
 
@@ -210,7 +212,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     IEnumerator GenerateBeras()
     {
-        while(berasQuantity < 35)
+        while(berasQuantity < 45)
         {
             berasToGenerate = Random.Range(1, 3);
             xPos = Random.Range(-50, 56);
@@ -227,6 +229,14 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
            if (berasToGenerate == 3)
             {
                 PhotonNetwork.Instantiate(Beras3.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
+            }
+            if (berasToGenerate == 4)
+            {
+                PhotonNetwork.Instantiate(BerasKuning.name, new Vector3(xPos, 1, zPos), Quaternion.identity, 0);
+            }
+            if (berasToGenerate == 5)
+            {
+                PhotonNetwork.Instantiate(BerasMerah.name, new Vector3(xPos, 1, zPos), Quaternion.identity, 0);
             }
             yield return new WaitForSeconds(0.05f);
             berasQuantity += 1;
