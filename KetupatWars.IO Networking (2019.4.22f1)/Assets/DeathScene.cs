@@ -45,7 +45,7 @@ public class DeathScene : MonoBehaviour
     {
         
         gameController.GameCanvas.SetActive(true);
-        DeadInstance.SetActive(false);
+        Destroy(this.gameObject);
         Debug.Log("testing");
 
     }

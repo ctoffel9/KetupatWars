@@ -536,8 +536,6 @@ MonoBehaviour:
   DeathController: {fileID: 0}
   DeathCanvas: {fileID: 788970450256515529, guid: 39f65bc49de19fb4a97cfba0157e07af,
     type: 3}
-  DC: {fileID: 0}
-  body: {fileID: 4521261551855040027}
   Player: {fileID: 5790799053656665540}
   MyController: {fileID: 250684218956361837}
   KetupatScript: {fileID: 0}
@@ -550,7 +548,6 @@ MonoBehaviour:
     type: 3}
   DataCanvas: {fileID: 2701671437748469218}
   Beras: {fileID: 5929265450276046591, guid: e62a0de98441dcf4ca94d1b947706223, type: 3}
-  DeathPanel: {fileID: 0}
   renderer:
   - {fileID: 5665520581573640436}
   - {fileID: 7417365298004858840}
@@ -562,6 +559,7 @@ MonoBehaviour:
   isControlled: 0
   isSprint: 0
   isAttacking: 0
+  isWin: 0
 --- !u!114 &8173251804882455726
 MonoBehaviour:
   m_ObjectHideFlags: 0

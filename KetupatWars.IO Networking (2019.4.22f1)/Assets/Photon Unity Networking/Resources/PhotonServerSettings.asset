@@ -54,4 +54,6 @@ MonoBehaviour:
   - RpcDeath
   - RpcItem
   - RpcDrop
+  - RPCStart
+  - RpcDropBeras
   DisableAutoOpenWizard: 1

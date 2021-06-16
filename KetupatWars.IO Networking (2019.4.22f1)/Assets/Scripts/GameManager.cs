@@ -33,6 +33,8 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     private GameObject DCInstance;
 
+    public List<PlayerScript> players = new List<PlayerScript>();
+
     [SerializeField] private Transform Canvas1;
 
     public int xPos;
@@ -108,7 +110,6 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(randomValueX, -1 , randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
-        DeathCanvas.SetActive(false);
     }
 
     public void SpawnPlayer2()
@@ -202,7 +203,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
             {
                 PhotonNetwork.Instantiate(Bush4.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             objectQuantity += 1;
         }
     }
@@ -227,7 +228,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
             {
                 PhotonNetwork.Instantiate(Beras3.name, new Vector3(xPos, 1, zPos), Quaternion.identity,0);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             berasQuantity += 1;
         }
     }
@@ -274,8 +275,34 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
         if(timer<=0)
         {
-            
             Debug.Log("waktuhabisbro");
+            if(players[0].berasDimiliki > players[1].berasDimiliki)
+            {
+                players[0].isWin = true;
+            }
+            else
+            {
+                players[1].isWin = true;
+            }
+            //for (int i = 0; i < players.Count; i++)
+            //{
+            //    if(i < players.Count)
+            //    {
+            //    if (players[i].berasDimiliki > players[i+1].berasDimiliki)
+            //        {
+            //            players[i].isWin = true;
+            //        }
+
+               
+            //    }
+            //    if(i == players.Count)
+            //    {
+            //        if (players[i].berasDimiliki > players[i - 1].berasDimiliki)
+            //        {
+            //            players[i].isWin = true;
+            //        }
+            //    }
+            //}  
         }
     }
 

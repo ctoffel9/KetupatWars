@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class ItemNetworking : Photon.MonoBehaviour
 {
+    public float skorberas;
+    public bool berasputih;
+    public bool berasmerah;
+    public bool beraskuning;
     PlayerScript playerData;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(berasputih)
+        {
+            skorberas = 1;
+        }
     }
 
     // Update is called once per frame
@@ -21,9 +28,7 @@ public class ItemNetworking : Photon.MonoBehaviour
     {
         if(other.GetComponent<PlayerScript>())
         {
-            other.GetComponent<PlayerScript>().GiveScore(1f);
-            other.GetComponent<PlayerScript>().KetupatAttack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
-            other.GetComponent<PlayerScript>().KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
+            
             photonView.RPC(nameof(RpcItem), PhotonTargets.All);
             
         }

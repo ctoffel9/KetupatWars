@@ -18,11 +18,12 @@ public class PlayerScript : Photon.MonoBehaviour
 
     PhotonView PV;
     [SerializeField]private DeathScene DeathController;
+    GameManager gameController;
+
     private GameObject DCInstance;
+    private GameObject VCInstance;
 
     public GameObject DeathCanvas;
-    public GameObject DC;
-    public GameObject body;
     public GameObject Player;
 
     public CharacterController MyController;
@@ -35,7 +36,6 @@ public class PlayerScript : Photon.MonoBehaviour
     public GameObject VictoryPanel;
     public GameObject DataCanvas;
     public GameObject Beras;
-    public GameObject DeathPanel;
 
     public Renderer[] renderer;
 
@@ -51,6 +51,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public bool isControlled;
     public bool isSprint;
     public bool isAttacking;
+    public bool isWin;
 
     private void Awake()
     {
@@ -66,7 +67,7 @@ public class PlayerScript : Photon.MonoBehaviour
 
         DeathController = GameObject.FindGameObjectWithTag("DeadUI").GetComponent<DeathScene>();
 
-      
+        photonView.RPC(nameof(RPCStart), PhotonTargets.OthersBuffered);
     }
 
     private void Update()
@@ -102,9 +103,29 @@ public class PlayerScript : Photon.MonoBehaviour
             anima.SetTrigger("Attack");
         }
 
-        RpcScore(berasDimiliki);
         //RpcWin();
         ChangeColor();
+
+        if (PV.isMine)
+        {
+            if(isWin)
+            {
+               
+                Debug.Log("menangbro");
+                if(VCInstance == null)
+                {
+                VCInstance = Instantiate(VictoryPanel);
+                }
+            }
+            else
+            {
+            //    Debug.Log("kalahbro");
+            //    if(LCInstance == null)
+            //    {
+            //        LCInstance = Instantiate(LosePanel);
+            //    }
+            }
+        }
     }
 
     private void CheckInput()
@@ -141,41 +162,43 @@ public class PlayerScript : Photon.MonoBehaviour
         }
     }
 
-   
-
+  
     void Run()
     {
         StartCoroutine(EndRun());
     }
 
-    void DestroyOther()
+
+    public void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!photonView.isMine)
-            return;
-
-        PhotonView target = other.gameObject.GetComponent<PhotonView>();
-
-        if(target != null && (!target.isMine || target.isSceneView))
-       {
-            if(target.gameObject.tag == "Beras")
-            {
-                PhotonNetwork.Destroy(target.gameObject);
-                Debug.Log(" Object Destroyed All Client");
-                GiveScore(0);
-                KetupatAttack.transform.localScale += new Vector3(0.005f , 0.0050f, 0.0050f);
-                KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
-           }
-        }  
-
-        if(target.gameObject.tag == "Ketupat")
+        if (PV.isMine)
         {
-            DeathController.DeathS();
+            ItemNetworking item = other.GetComponent<ItemNetworking>();
+            if (item)
+            {
+                GiveScore(item.skorberas);
+                KetupatAttack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
+                KetupatBack.transform.localScale += new Vector3(0.005f, 0.0050f, 0.0050f);
+            }
+
+            //KetupatScript ketupat = other.GetComponent<KetupatScript>();
+            //if (ketupat)
+            //{
+                
+            //}
         }
+        // if (!photonView.isMine)
+        //     return;
+
+        // PhotonView target = other.gameObject.GetComponent<PhotonView>();
+
+        // if(target != null && (!target.isMine || target.isSceneView))
+        //{
+        //     if (target.gameObject.tag == "Ketupat")
+        //     {
+
+        //     }
+        // }    
     }
 
     IEnumerator EndRun()
@@ -199,19 +222,17 @@ public class PlayerScript : Photon.MonoBehaviour
         isAttacking = (false);
     }
 
-
     public void GiveScore(float _amount)
     {
-        berasDimiliki += _amount;
         JumlahBerasText.text = "Jumlah Beras : " + berasDimiliki.ToString();
 
-        PV.RPC(nameof(RpcScore), PhotonTargets.AllBuffered, berasDimiliki);
+        PV.RPC(nameof(RpcScore), PhotonTargets.AllBuffered, _amount);
     }
 
     [PunRPC]
-    private void RpcScore(float _currentScore)
+    private void RpcScore( float _amount)
     {
-        _currentScore = berasDimiliki;
+        berasDimiliki += _amount;
         JumlahBerasText.text = "Jumlah Beras : " + berasDimiliki.ToString();
     }
 
@@ -223,8 +244,11 @@ public class PlayerScript : Photon.MonoBehaviour
     [PunRPC]
     public void RpcDeath()
     {
-        StartCoroutine(DeathScene());
-        
+        if (PV.isMine)
+        {
+            DeathController.DeathS();
+        }
+        StartCoroutine(DeathScene());      
     }
 
     IEnumerator DeathScene()
@@ -236,27 +260,45 @@ public class PlayerScript : Photon.MonoBehaviour
     
     public void Drop()
     {
-        photonView.RPC(nameof(RpcDrop), PhotonTargets.All);
-    }
-    [PunRPC]
-    public void RpcDrop()
-    {
         for (int i = 0; i < berasDimiliki; i++)
         {
-            GameObject beras = PhotonNetwork.Instantiate(Beras.name, transform.position, Quaternion.identity,0);
+            GameObject beras = PhotonNetwork.Instantiate(Beras.name, new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity, 0);
+            Debug.Log("berasdropbro");
         }
+        //photonView.RPC(nameof(RpcDrop), PhotonTargets.All);
     }
+    //[PunRPC]
+    //public void RpcDrop()
+    //{
+    //    if (PV.isMine)
+    //    {
+    //        Debug.Log("rpcdropdijalankan1");
+    //        photonView.RPC(nameof(RpcDropBeras), PhotonTargets.All);
+    //    }
+    //}
+    //[PunRPC]
+    //public void RpcDropBeras()
+    //{
+    //    Debug.Log("rpcdropdijalankan2");
+    //for (int i = 0; i < berasDimiliki; i++)
+    //    {
+    //        GameObject beras = PhotonNetwork.Instantiate(Beras.name, new Vector3(transform.position.x,0.5f,transform.position.z), Quaternion.identity, 0);
+    //        Debug.Log("berasdropbro");
+    //    }
+    //}
     public void Death()
     {
+        
         photonView.RPC("RpcDeath", PhotonTargets.All);
     }
+
     [PunRPC]
     public void RpcWin()
     {
         if(berasDimiliki == 50)
         {
             PhotonNetwork.DestroyAll();
-            VictoryPanel.SetActive(true);
+            
             
         }
     }
@@ -278,4 +320,27 @@ public class PlayerScript : Photon.MonoBehaviour
             renderer[1].material.color = Color.black;
         }
     }
+
+    [PunRPC]
+    public void RPCStart()
+    {
+        gameController = FindObjectOfType<GameManager>();
+        gameController.players.Add(this);
+    }
+
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.isWriting)
+    //    {
+    //       stream.SendNext(this.berasDimiliki);
+           
+
+    //    }
+    //    else
+    //    {
+    //        beras = (int)stream.ReceiveNext();
+          
+    //    }
+
+    //}
 }

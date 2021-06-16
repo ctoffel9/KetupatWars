@@ -108,6 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e408fe5cab45c34499bc3b84119b8e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skorberas: 0
+  berasputih: 1
+  berasmerah: 0
+  beraskuning: 0
 --- !u!114 &-4532324949121648754
 MonoBehaviour:
   m_ObjectHideFlags: 0
