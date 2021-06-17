@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject ConnectPanel;
     [SerializeField] private GameObject ExitPanel;
     [SerializeField] private GameObject CreditPanel;
+    [SerializeField] private GameObject TutorPanel;
 
     [SerializeField] private InputField UsernameInput;
     [SerializeField] private InputField CreateGameInput;
@@ -107,6 +108,16 @@ public class MenuController : MonoBehaviour
     public void CloseCredit()
     {
         CreditPanel.SetActive(false);
+    }
+
+    public void TutorialOpen()
+    {
+        TutorPanel.SetActive(true);
+    }
+
+    public void TutorialClose()
+    {
+        TutorPanel.SetActive(false);
     }
 
     public void Exit()
