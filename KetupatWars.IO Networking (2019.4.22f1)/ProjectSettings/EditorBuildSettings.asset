@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay.unity
     guid: dc5ec10738cef0e42bf295cc65f0ea53
   - enabled: 0
-    path: Assets/Scenes/Dummy Smashed/Defeated.unity
-    guid: 86ee95e4f3286bd419d41c3e86aeb969
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: 814c4aad53e97e34e88e32ab0f902f24
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 2042fe56a728932468c052c1aa44750b
   m_configObjects: {}

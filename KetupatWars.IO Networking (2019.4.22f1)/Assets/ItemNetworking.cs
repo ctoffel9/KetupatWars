@@ -8,6 +8,8 @@ public class ItemNetworking : Photon.MonoBehaviour
     public bool berasputih;
     public bool berasmerah;
     public bool beraskuning;
+    public AudioSource audioData;
+    public AudioClip sfx;
     PlayerScript playerData;
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class ItemNetworking : Photon.MonoBehaviour
     {
         if(other.GetComponent<PlayerScript>())
         {
-            
+            AudioSource.PlayClipAtPoint(sfx, this.transform.position);
             photonView.RPC(nameof(RpcItem), PhotonTargets.All);
             
         }

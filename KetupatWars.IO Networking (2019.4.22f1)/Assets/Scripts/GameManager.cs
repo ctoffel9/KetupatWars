@@ -76,8 +76,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     public void Start()
     {
-        
-
+       
     }
 
     private void Update()
@@ -289,30 +288,15 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
             if(players[0].berasDimiliki > players[1].berasDimiliki)
             {
                 players[0].isWin = true;
+                players[1].isLose = true;
             }
             else
             {
                 players[1].isWin = true;
+                players[0].isLose = true;
             }
-            //for (int i = 0; i < players.Count; i++)
-            //{
-            //    if(i < players.Count)
-            //    {
-            //    if (players[i].berasDimiliki > players[i+1].berasDimiliki)
-            //        {
-            //            players[i].isWin = true;
-            //        }
 
-               
-            //    }
-            //    if(i == players.Count)
-            //    {
-            //        if (players[i].berasDimiliki > players[i - 1].berasDimiliki)
-            //        {
-            //            players[i].isWin = true;
-            //        }
-            //    }
-            //}  
+
         }
     }
 
@@ -326,4 +310,23 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    //for (int i = 0; i < players.Count; i++)
+    //{
+    //    if(i < players.Count)
+    //    {
+    //    if (players[i].berasDimiliki > players[i+1].berasDimiliki)
+    //        {
+    //            players[i].isWin = true;
+    //        }
+
+
+    //    }
+    //    if(i == players.Count)
+    //    {
+    //        if (players[i].berasDimiliki > players[i - 1].berasDimiliki)
+    //        {
+    //            players[i].isWin = true;
+    //        }
+    //    }
+    //}  
 }

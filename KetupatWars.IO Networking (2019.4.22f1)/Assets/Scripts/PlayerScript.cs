@@ -18,7 +18,14 @@ public class PlayerScript : Photon.MonoBehaviour
 
     PhotonView PV;
     [SerializeField]private DeathScene DeathController;
-    GameManager gameController;
+    [SerializeField]private GameManager gameController;
+
+    public AudioSource audiodata;
+    public AudioClip spin;
+    public AudioClip hitted;
+    public AudioClip walk;
+    public AudioClip run;
+    public AudioClip att;
 
     private GameObject DCInstance;
     private GameObject VCInstance;
@@ -52,6 +59,7 @@ public class PlayerScript : Photon.MonoBehaviour
     public bool isSprint;
     public bool isAttacking;
     public bool isWin;
+    public bool isLose;
 
     private void Awake()
     {
@@ -66,6 +74,8 @@ public class PlayerScript : Photon.MonoBehaviour
         dead.SetManager(GetComponent<PlayerScript>());
 
         DeathController = GameObject.FindGameObjectWithTag("DeadUI").GetComponent<DeathScene>();
+
+        gameController = GetComponent<GameManager>();
 
         photonView.RPC(nameof(RPCStart), PhotonTargets.OthersBuffered);
     }
@@ -92,14 +102,17 @@ public class PlayerScript : Photon.MonoBehaviour
         }
         else if (_characterState == CharacterAnim.Run)
         {
+            
             anima.SetFloat("Blend", 1f);
         }
         else if (_characterState == CharacterAnim.Walking)
         {
+            
             anima.SetFloat("Blend", 0.5f);
         }
         else if (_characterState == CharacterAnim.Attack)
         {
+            
             anima.SetTrigger("Attack");
         }
 
@@ -110,22 +123,15 @@ public class PlayerScript : Photon.MonoBehaviour
         {
             if(isWin)
             {
-               
-                Debug.Log("menangbro");
-                if(VCInstance == null)
-                {
-                VCInstance = Instantiate(VictoryPanel);
-                }
+                PhotonNetwork.LoadLevel("WinScene");
             }
-            else
+            if(isLose)
             {
-            //    Debug.Log("kalahbro");
-            //    if(LCInstance == null)
-            //    {
-            //        LCInstance = Instantiate(LosePanel);
-            //    }
+                PhotonNetwork.LoadLevel("LoseScene");
             }
         }
+
+        
     }
 
     private void CheckInput()
@@ -148,24 +154,35 @@ public class PlayerScript : Photon.MonoBehaviour
             MyController.Move(direction * speed * Time.deltaTime);
             if (isSprint == true)
             {
-                //anima.SetFloat("Blend", 1f);
                 _characterState = CharacterAnim.Run;
                 return;
             }
-            //anima.SetFloat("Blend", 0.5f);
             _characterState = CharacterAnim.Walking;
         }
         else
         {
-            //anima.SetFloat("Blend", 0f);
+        
             _characterState = CharacterAnim.Idle;
         }
     }
 
   
+
     void Run()
     {
         StartCoroutine(EndRun());
+    }
+
+    void SfxManager()
+    {
+        if (Input.GetKeyDown(KeyCode.W | KeyCode.A | KeyCode.S | KeyCode.D) | isSprint == false )
+        {
+            audiodata.Play();
+        }
+        else if (Input.GetKeyUp(KeyCode.W | KeyCode.A | KeyCode.S | KeyCode.D) | isSprint == false)
+        {
+            audiodata.Stop();
+        }
     }
 
 
@@ -205,7 +222,9 @@ public class PlayerScript : Photon.MonoBehaviour
     {
         isSprint = true;
         speed += 5;
+        audiodata.PlayOneShot(run);
         yield return new WaitForSeconds(5);
+        audiodata.Stop();
         speed -= 5f;
         isSprint = false;
     }
@@ -215,7 +234,9 @@ public class PlayerScript : Photon.MonoBehaviour
         KetupatAttack.SetActive(true);
         KetupatBack.SetActive(false);
         _characterState = CharacterAnim.Attack;
+       
         yield return new WaitForSeconds(1);
+        
         KetupatAttack.SetActive(false);
         KetupatBack.SetActive(true);
         new WaitForSeconds(2);
@@ -246,6 +267,7 @@ public class PlayerScript : Photon.MonoBehaviour
     {
         if (PV.isMine)
         {
+            audiodata.PlayOneShot(hitted);
             DeathController.DeathS();
         }
         StartCoroutine(DeathScene());      

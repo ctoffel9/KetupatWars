@@ -2393,8 +2393,8 @@ MonoBehaviour:
   objectQuantity: 0
   berasQuantity: 0
   berasToGenerate: 0
-  timeLimit: 69
-  timer: 69
+  timeLimit: 15
+  timer: 15
   timerText: {fileID: 734380812}
   Off: 0
 --- !u!4 &732393467
@@ -6927,7 +6927,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 922c9ddc115461f4db7cd645c75fc020,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ea065e94da347c849a42012545e1cd8e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5e9b9a6b2602ba94bbdcfd8a3f2644fe, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
