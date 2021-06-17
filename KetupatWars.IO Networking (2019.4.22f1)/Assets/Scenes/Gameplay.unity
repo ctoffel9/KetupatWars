@@ -2361,11 +2361,11 @@ MonoBehaviour:
   DeathController: {fileID: 0}
   PlayerPrefab: {fileID: 5790799053656665540, guid: 27a6d7d5c19725a4abb0c8e2e064eda6,
     type: 3}
-  PlayerPrefab2: {fileID: 5790799053656665540, guid: 1ce3e9ffbc02b4b4883612323f405f54,
+  PlayerPrefab2: {fileID: 5790799053656665540, guid: 899d041c7b0831c4b874252c2e7929d9,
     type: 3}
-  PlayerPrefab3: {fileID: 5790799053656665540, guid: 990288c905a42ea4f8c01930858b08d9,
+  PlayerPrefab3: {fileID: 5790799053656665540, guid: 411c7f2a9d058a049b1241b001b0bb24,
     type: 3}
-  PlayerPrefab4: {fileID: 5790799053656665540, guid: 8ee4a1c11240bce42ac08e3101636e20,
+  PlayerPrefab4: {fileID: 5790799053656665540, guid: a9208607016f66746ae64e304fb85c33,
     type: 3}
   GameCanvas: {fileID: 2109787637}
   SceneCamera: {fileID: 1594979508}

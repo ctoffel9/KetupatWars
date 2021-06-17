@@ -29,32 +29,22 @@ MonoBehaviour:
   RunInBackground: 1
   RpcList:
   - Chat
-  - ColorRpc
   - DestroyRpc
-  - DoJump
-  - Flash
   - InstantiateRpc
-  - Marco
   - PickupItemInit
-  - Polo
   - PunPickup
   - PunPickupSimple
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
+  - RpcDeath
+  - RPCEndgame
+  - RpcItem
   - RpcKetupat
   - RpcScore
-  - RpcWin
-  - TaggedPlayer
-  - Update
-  - Spawner
-  - Timer
-  - TimerStarts
-  - timerOn
-  - RpcDeath
-  - RpcItem
-  - RpcDrop
   - RPCStart
-  - RpcDropBeras
-  - RPCEndgame
+  - RpcWin
+  - Spawner
+  - timerOn
+  - TimerStarts
   DisableAutoOpenWizard: 1
