@@ -2393,8 +2393,8 @@ MonoBehaviour:
   objectQuantity: 0
   berasQuantity: 0
   berasToGenerate: 0
-  timeLimit: 15
-  timer: 15
+  timeLimit: 180
+  timer: 180
   timerText: {fileID: 734380812}
   Off: 0
 --- !u!4 &732393467

@@ -296,7 +296,6 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
                 players[0].isLose = true;
             }
 
-
         }
     }
 
