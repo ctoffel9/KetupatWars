@@ -56,4 +56,5 @@ MonoBehaviour:
   - RpcDrop
   - RPCStart
   - RpcDropBeras
+  - RPCEndgame
   DisableAutoOpenWizard: 1

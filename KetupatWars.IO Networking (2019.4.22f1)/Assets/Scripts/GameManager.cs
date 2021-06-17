@@ -9,6 +9,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     [SerializeField]PlayerScript PlayerController;
     [SerializeField]DeathScene DeathController;
 
+    PhotonView PV;
     public GameObject PlayerPrefab;
     public GameObject PlayerPrefab2;
     public GameObject PlayerPrefab3;
@@ -45,6 +46,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
     public int objectQuantity;
     public int berasQuantity;
     public int berasToGenerate;
+    public int jumlahplayer;
 
     public float timeLimit;
 
@@ -58,6 +60,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     private void Awake()
     {
+        PV = GetComponent<PhotonView>();
         GameCanvas.SetActive(true);
         if (PhotonNetwork.isMasterClient)
         {
@@ -76,7 +79,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
     public void Start()
     {
-       
+      
     }
 
     private void Update()
@@ -285,17 +288,33 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
         if(timer<=0)
         {
             Debug.Log("waktuhabisbro");
-            if(players[0].berasDimiliki > players[1].berasDimiliki)
-            {
-                players[0].isWin = true;
-                players[1].isLose = true;
-            }
-            else
-            {
-                players[1].isWin = true;
-                players[0].isLose = true;
-            }
+            EndGame();
+            
 
+        }
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("memanggilrpc");
+        photonView.RPC(nameof(RPCEndgame), PhotonTargets.AllBuffered);
+    }
+    [PunRPC]
+    public void RPCEndgame()
+    {
+        Debug.Log("RPCjalan");
+        loop();
+       
+    }
+
+    public void loop()
+    {
+        Debug.Log("loopjalan");
+        Debug.Log(players.Count);
+        for (int i = 0; i <= players.Count; i++)
+        {
+            players[i].WinLoseCon();
+            Debug.Log("rpcendgame" + i);
         }
     }
 

@@ -2393,6 +2393,7 @@ MonoBehaviour:
   objectQuantity: 0
   berasQuantity: 0
   berasToGenerate: 0
+  jumlahplayer: 0
   timeLimit: 180
   timer: 180
   timerText: {fileID: 734380812}

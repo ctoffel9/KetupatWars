@@ -76,8 +76,11 @@ public class PlayerScript : Photon.MonoBehaviour
         DeathController = GameObject.FindGameObjectWithTag("DeadUI").GetComponent<DeathScene>();
 
         gameController = GetComponent<GameManager>();
+        if (PV.isMine)
+        {
 
-        photonView.RPC(nameof(RPCStart), PhotonTargets.OthersBuffered);
+        photonView.RPC(nameof(RPCStart), PhotonTargets.AllBuffered);
+        }
     }
 
     private void Update()
@@ -121,13 +124,10 @@ public class PlayerScript : Photon.MonoBehaviour
 
         if (PV.isMine)
         {
-            if(isWin)
+            if (berasDimiliki >= 200)
             {
-                PhotonNetwork.LoadLevel("WinScene");
-            }
-            if(isLose)
-            {
-                PhotonNetwork.LoadLevel("LoseScene");
+                isWin = true;
+                gameController.EndGame();
             }
         }
 
@@ -172,6 +172,23 @@ public class PlayerScript : Photon.MonoBehaviour
     {
         StartCoroutine(EndRun());
     }
+
+    public void WinLoseCon ()
+    {
+        if (PV.isMine)
+        {
+            if(isWin)
+            {
+                Debug.Log("Iswin");
+                PhotonNetwork.LoadLevel("WinScene");
+            }
+            else
+            {
+                Debug.Log("Ilose");
+                PhotonNetwork.LoadLevel("LoseScene");
+            }
+        }
+    } 
 
     void SfxManager()
     {
@@ -346,8 +363,10 @@ public class PlayerScript : Photon.MonoBehaviour
     [PunRPC]
     public void RPCStart()
     {
+        
         gameController = FindObjectOfType<GameManager>();
         gameController.players.Add(this);
+        gameController.jumlahplayer += 1;
     }
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
