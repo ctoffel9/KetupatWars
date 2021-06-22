@@ -123,7 +123,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab2.name, new Vector3(randomValueX, -1, randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
-        DeathCanvas.SetActive(false);
+        
     }
 
     public void SpawnPlayer3()
@@ -133,7 +133,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab3.name, new Vector3(randomValueX, -1, randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
-        DeathCanvas.SetActive(false);
+        
     }
 
     public void SpawnPlayer4()
@@ -143,7 +143,7 @@ public class GameManager : Photon.MonoBehaviour , IPunObservable
 
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrefab4.name, new Vector3(randomValueX, -1, randomValueZ), Quaternion.identity, 0);
         GameCanvas.SetActive(false);
-        DeathCanvas.SetActive(false);
+
     }
 
     public void TreesSpawner()

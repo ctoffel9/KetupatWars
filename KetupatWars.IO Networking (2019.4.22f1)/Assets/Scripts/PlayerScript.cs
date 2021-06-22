@@ -331,16 +331,7 @@ public class PlayerScript : Photon.MonoBehaviour
         photonView.RPC("RpcDeath", PhotonTargets.All);
     }
 
-    [PunRPC]
-    public void RpcWin()
-    {
-        if(berasDimiliki == 50)
-        {
-            PhotonNetwork.DestroyAll();
-            
-            
-        }
-    }
+  
     public void ChangeColor()
     {
         if(berasDimiliki >= 5 && berasDimiliki <= 15)
